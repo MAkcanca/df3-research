@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software in academic work, please cite it using the metadata
+  below. (A paper/preprint citation can be added here once available.)
+title: "DF3: Agent-Focused Forensic Image Analysis"
+type: software
+license: MIT
+authors:
+  # TODO: Replace this placeholder with individual author entries, e.g.:
+  # - family-names: "Doe"
+  #   given-names: "Jane"
+  - name: "DF3 Contributors"
+keywords:
+  - forensic
+  - image forensics
+  - deepfakes
+  - generative ai
+  - llm agents
+  - computer vision
+
+repository-code: "https://github.com/MAkcanca/df3-research"
+
+# TODO (optional but recommended): once you have a Zenodo DOI, add e.g.:
+# doi: "10.5281/zenodo.1234567"
+# url: "https://doi.org/10.5281/zenodo.1234567"
+
