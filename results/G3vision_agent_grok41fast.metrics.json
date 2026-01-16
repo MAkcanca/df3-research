@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "temperature": 0.0,
+    "max_iterations": 15,
+    "trials": 1,
+    "num_workers": 6,
+    "reasoning_effort": null,
+    "generated_at_unix": 1768228933.9955425,
+    "cancelled": false,
+    "completed_records": 200
+  },
+  "x-ai/grok-4.1-fast|tools": {
+    "per_trial": {
+      "0": {
+        "total": 200,
+        "correct": 101,
+        "answered": 121,
+        "accuracy": 0.505,
+        "accuracy_answered": 0.8347107438016529,
+        "coverage": 0.605,
+        "precision_fake": 0.75,
+        "recall_fake": 0.7105263157894737,
+        "f1_fake": 0.7297297297297298,
+        "precision_real": 0.8705882352941177,
+        "recall_real": 0.891566265060241,
+        "f1_real": 0.880952380952381,
+        "balanced_accuracy": 0.8010462904248573,
+        "balanced_accuracy_answered": 0.8010462904248573,
+        "precision_fake_answered": 0.75,
+        "recall_fake_answered": 0.7105263157894737,
+        "f1_fake_answered": 0.7297297297297298,
+        "precision_real_answered": 0.8705882352941177,
+        "recall_real_answered": 0.891566265060241,
+        "f1_real_answered": 0.880952380952381,
+        "avg_confidence": 0.84,
+        "avg_latency_seconds": 40.416939889103915,
+        "avg_tool_count": 3.206611570247934,
+        "avg_tool_seconds_total": 0.04156912727404601,
+        "abstain_count": 78,
+        "abstain_count_fake": 59,
+        "abstain_count_real": 19,
+        "error_count": 1,
+        "abstain_rate": 0.39,
+        "abstain_rate_fake": 0.6020408163265306,
+        "abstain_rate_real": 0.18627450980392157,
+        "error_rate": 0.005,
+        "coverage_fake": 0.3979591836734694,
+        "coverage_real": 0.8137254901960784,
+        "fake_slip_rate": 0.11224489795918367,
+        "real_false_flag_rate": 0.08823529411764706,
+        "fake_catch_rate": 0.2755102040816326,
+        "real_pass_rate": 0.7254901960784313,
+        "confusion": {
+          "tp": 27,
+          "tn": 74,
+          "fp": 9,
+          "fn": 11
+        },
+        "support": {
+          "real": 102,
+          "fake": 98
+        }
+      }
+    },
+    "summary": {
+      "mean": {
+        "accuracy": 0.505,
+        "accuracy_answered": 0.8347107438016529,
+        "coverage": 0.605,
+        "balanced_accuracy": 0.8010462904248573,
+        "balanced_accuracy_answered": 0.8010462904248573,
+        "f1_fake": 0.7297297297297298,
+        "f1_real": 0.880952380952381,
+        "precision_fake": 0.75,
+        "recall_fake": 0.7105263157894737,
+        "precision_real": 0.8705882352941177,
+        "recall_real": 0.891566265060241,
+        "abstain_rate": 0.39,
+        "abstain_rate_fake": 0.6020408163265306,
+        "abstain_rate_real": 0.18627450980392157,
+        "coverage_fake": 0.3979591836734694,
+        "coverage_real": 0.8137254901960784,
+        "fake_slip_rate": 0.11224489795918367,
+        "real_false_flag_rate": 0.08823529411764706,
+        "fake_catch_rate": 0.2755102040816326,
+        "real_pass_rate": 0.7254901960784313
+      },
+      "std": {
+        "accuracy": 0.0,
+        "accuracy_answered": 0.0,
+        "coverage": 0.0,
+        "balanced_accuracy": 0.0,
+        "balanced_accuracy_answered": 0.0,
+        "f1_fake": 0.0,
+        "f1_real": 0.0,
+        "precision_fake": 0.0,
+        "recall_fake": 0.0,
+        "precision_real": 0.0,
+        "recall_real": 0.0,
+        "abstain_rate": 0.0,
+        "abstain_rate_fake": 0.0,
+        "abstain_rate_real": 0.0,
+        "coverage_fake": 0.0,
+        "coverage_real": 0.0,
+        "fake_slip_rate": 0.0,
+        "real_false_flag_rate": 0.0,
+        "fake_catch_rate": 0.0,
+        "real_pass_rate": 0.0
+      },
+      "mean_error_rate": 0.005,
+      "mean_abstain_rate": 0.39,
+      "totals": {
+        "avg_total": 200,
+        "avg_support_fake": 98,
+        "avg_support_real": 102
+      }
+    }
+  }
+}

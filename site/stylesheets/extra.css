@@ -1,0 +1,175 @@
+/* DF3 Documentation Custom Styles */
+
+:root {
+  --md-primary-fg-color: #7c3aed;
+  --md-primary-fg-color--light: #8b5cf6;
+  --md-primary-fg-color--dark: #6d28d9;
+  --md-accent-fg-color: #f59e0b;
+}
+
+/* Hero section styling */
+.hero {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .tagline {
+  font-size: 1.25rem;
+  color: var(--md-typeset-color);
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* Feature cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-typeset-table-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: var(--md-accent-fg-color);
+}
+
+.feature-card p {
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+
+/* Code blocks enhancement */
+.md-typeset code {
+  border-radius: 4px;
+}
+
+.md-typeset pre {
+  border-radius: 8px;
+}
+
+/* Admonition styling */
+.md-typeset .admonition {
+  border-radius: 8px;
+}
+
+/* Tool reference cards */
+.tool-card {
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--md-code-bg-color);
+  border-left: 4px solid var(--md-accent-fg-color);
+}
+
+.tool-card h4 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.stable {
+  background: #10b981;
+  color: white;
+}
+
+.status-badge.beta {
+  background: #f59e0b;
+  color: white;
+}
+
+.status-badge.experimental {
+  background: #ef4444;
+  color: white;
+}
+
+/* Architecture diagrams */
+.architecture-diagram {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: var(--md-code-bg-color);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Tables enhancement */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color);
+  color: white;
+}
+
+/* Quick links section */
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: var(--md-primary-fg-color);
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.quick-links a:hover {
+  background: var(--md-primary-fg-color--dark);
+}
+
+/* Metric tables */
+.metric-table {
+  font-size: 0.9rem;
+}
+
+.metric-table td:first-child {
+  font-weight: 600;
+}
+
+/* Footer customization */
+.md-footer {
+  margin-top: 3rem;
+}

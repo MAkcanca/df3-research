@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.pkl
+*.pth
+*.h5
+*.ckpt
+
+*.tar
+example_images/
+data/
+!data/README.md
+
+# Tool cache
+.tool_cache/
+sideproject
+data2
+artifacts/

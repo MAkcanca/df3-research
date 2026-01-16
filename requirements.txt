@@ -1,0 +1,47 @@
+# Core LLM and agent dependencies
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-core>=0.1.0
+langgraph>=0.0.20
+
+# OpenAI API
+openai>=1.0.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Image processing
+Pillow>=10.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# JPEG forensics - raw DCT coefficient access (like MATLAB's jpeg_read)
+# https://github.com/martinbenes1996/jpeglib
+# Supports libjpeg 6b-9e, libjpeg-turbo, mozjpeg
+jpeglib>=1.0.0
+
+# Optional: For advanced features
+# torch>=2.0.0  # For noiseprint CNN (if needed)
+# opencv-python>=4.8.0  # For advanced image processing
+
+# TruFor dependencies
+--extra-index-url https://download.pytorch.org/whl/cu126
+torch>=2.9.0
+torchvision>=0.24.0
+timm>=0.9.0  # Required for TruFor Segformer backbone
+yacs>=0.1.8  # Required for TruFor configuration
+
+# Residuals dependencies
+opencv-python>=4.12.0
+
+# BAML for structured LLM outputs
+baml-py>=0.214.0
+
+# Logfire for LLM tracing and observability
+logfire>=4.16.0
+
+# Development tools
+ruff>=0.14.0
+tqdm>=4.67.0
+pytest>=8.0.0
+mkdocs

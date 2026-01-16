@@ -1,0 +1,2880 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agentic forensic image analysis system for detecting AI-generated and manipulated images">
+      
+      
+        <meta name="author" content="DF3 Team">
+      
+      
+      
+        <link rel="prev" href="../../getting-started/first-analysis/">
+      
+      
+        <link rel="next" href="../analyzing-images/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>How It Works - DF3 - Forensic Image Analysis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-df3-works" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DF3 - Forensic Image Analysis" class="md-header__button md-logo" aria-label="DF3 - Forensic Image Analysis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DF3 - Forensic Image Analysis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How It Works
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DF3 - Forensic Image Analysis" class="md-nav__button md-logo" aria-label="DF3 - Forensic Image Analysis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg>
+
+    </a>
+    DF3 - Forensic Image Analysis
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your First Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-two-type-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Two-Type Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Two-Type Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manipulated-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulated Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-generated-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI-Generated Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-analysis-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Analysis Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-vision-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Vision Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Vision Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-vision-llm-looks-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Vision LLM Looks For
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vision-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vision Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-tool-augmented-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Tool-Augmented Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Tool-Augmented Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-agent-decides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Agent Decides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-selection-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Selection Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-iteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Iteration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-structuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Structuring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Structuring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-separate-structuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Separate Structuring?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-output-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Output Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-say-fake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Say "FAKE"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-say-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Say "REAL"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-say-uncertain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Say "UNCERTAIN"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-weighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence Weighting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence Weighting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-vs-tool-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visual vs Tool Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflicting-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflicting Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latency-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latency Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forensic-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forensic Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyzing-images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analyzing Images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../batch-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interpreting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interpreting Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/agent-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/baml-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAML Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forensic Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Forensic Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/trufor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TruFor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/ela/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Level Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/jpeg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPEG Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/frequency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequency Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/residuals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Residual Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata and C2PA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/code-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/forensic-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ForensicAgent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/baml-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAML Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/tool-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evaluation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmark Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/dataset-provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Provenance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/swgde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SWGDE Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/reproducibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/delivery-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-two-type-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Two-Type Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Two-Type Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manipulated-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulated Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-generated-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI-Generated Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-analysis-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Analysis Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-vision-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Vision Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Vision Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-vision-llm-looks-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Vision LLM Looks For
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vision-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vision Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-tool-augmented-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Tool-Augmented Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Tool-Augmented Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-agent-decides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Agent Decides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-selection-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Selection Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-iteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Iteration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-structuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Structuring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Structuring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-separate-structuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Separate Structuring?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-output-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Output Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-say-fake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Say "FAKE"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-say-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Say "REAL"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-say-uncertain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Say "UNCERTAIN"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-weighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence Weighting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence Weighting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-vs-tool-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visual vs Tool Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflicting-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflicting Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latency-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latency Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forensic-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forensic Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="how-df3-works">How DF3 Works<a class="headerlink" href="#how-df3-works" title="Permanent link">&para;</a></h1>
+<p>DF3 uses an agent-based architecture to analyze images for signs of AI generation or manipulation. This page explains the core concepts and decision-making process.</p>
+<hr />
+<h2 id="the-core-philosophy">The Core Philosophy<a class="headerlink" href="#the-core-philosophy" title="Permanent link">&para;</a></h2>
+<p>Traditional image forensics tools produce numeric scores that require expert interpretation. DF3 takes a different approach:</p>
+<ol>
+<li><strong>Vision-First</strong> — The LLM examines the image directly, like a human expert would</li>
+<li><strong>Tool-Augmented</strong> — Forensic tools provide technical evidence to support or challenge visual observations</li>
+<li><strong>Transparent Reasoning</strong> — Every verdict includes explanations, not just scores</li>
+<li><strong>Selective Classification</strong> — The system can say "I'm not sure" instead of guessing</li>
+</ol>
+<hr />
+<h2 id="the-two-type-problem">The Two-Type Problem<a class="headerlink" href="#the-two-type-problem" title="Permanent link">&para;</a></h2>
+<p>A key insight in DF3's design is that "fake" images come in two fundamentally different forms:</p>
+<h3 id="manipulated-images">Manipulated Images<a class="headerlink" href="#manipulated-images" title="Permanent link">&para;</a></h3>
+<p>Images that started as real photographs but were edited:</p>
+<ul>
+<li><strong>Splicing</strong> — Pasting elements from other images</li>
+<li><strong>Copy-move</strong> — Duplicating regions within the image</li>
+<li><strong>Inpainting</strong> — AI-assisted removal or addition</li>
+<li><strong>Retouching</strong> — Color, lighting, or feature alterations</li>
+</ul>
+<p><strong>Detection approach:</strong> Forensic tools excel here. TruFor, ELA, and compression analysis detect local inconsistencies where edits were made.</p>
+<h3 id="ai-generated-images">AI-Generated Images<a class="headerlink" href="#ai-generated-images" title="Permanent link">&para;</a></h3>
+<p>Images created entirely by AI generators:</p>
+<ul>
+<li><strong>Text-to-image</strong> — DALL-E, Midjourney, Stable Diffusion</li>
+<li><strong>GAN-generated</strong> — StyleGAN, ProGAN faces</li>
+<li><strong>Deepfakes</strong> — Face swaps and reenactments</li>
+</ul>
+<p><strong>Detection approach:</strong> Visual analysis is key. AI-generated images often appear internally consistent to forensic tools (no "editing" artifacts), but contain telltale visual anomalies.</p>
+<div class="admonition important">
+<p class="admonition-title">Why This Matters</p>
+<p>A low TruFor score does NOT mean an image is real — it means the image hasn't been <em>edited</em>. A fully synthetic image can score low on manipulation tools because it was never manipulated; it was generated from scratch.</p>
+</div>
+<hr />
+<h2 id="the-analysis-pipeline">The Analysis Pipeline<a class="headerlink" href="#the-analysis-pipeline" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Input
+        IMG[Image File]
+    end
+
+    subgraph Vision["Step 1: Vision Analysis"]
+        direction TB
+        V1[Load Image]
+        V2[BAML Vision Function]
+        V3[Visual Description&lt;br/&gt;+ Initial Assessment]
+        V1 --&gt; V2 --&gt; V3
+    end
+
+    subgraph Decision{"Tools Mode?"}
+        D{use_tools?}
+    end
+
+    subgraph NoTools["No-Tools Path"]
+        NT[Direct Structuring]
+    end
+
+    subgraph Tools["Step 2: Agentic Tool Use"]
+        direction TB
+        A1[LangGraph ReAct Agent]
+        A2{Select Tool}
+        A3[Execute Tool]
+        A4[Interpret Results]
+        A5{More Tools&lt;br/&gt;Needed?}
+        A1 --&gt; A2
+        A2 --&gt; A3
+        A3 --&gt; A4
+        A4 --&gt; A5
+        A5 --&gt;|Yes| A2
+        A5 --&gt;|No| A6[Synthesize Findings]
+    end
+
+    subgraph Structure["Step 3: Structuring"]
+        S1[BAML Structuring Function]
+        S2[ForensicAnalysisResult]
+        S1 --&gt; S2
+    end
+
+    IMG --&gt; Vision
+    Vision --&gt; Decision
+    Decision --&gt;|False| NoTools
+    Decision --&gt;|True| Tools
+    NoTools --&gt; Structure
+    Tools --&gt; Structure
+
+    style Vision fill:#4a1d96,color:#fff
+    style Tools fill:#b45309,color:#fff
+    style Structure fill:#065f46,color:#fff</code></pre>
+<hr />
+<h2 id="step-1-vision-analysis">Step 1: Vision Analysis<a class="headerlink" href="#step-1-vision-analysis" title="Permanent link">&para;</a></h2>
+<p>Every analysis starts with the vision step, regardless of whether tools are enabled.</p>
+<h3 id="what-the-vision-llm-looks-for">What the Vision LLM Looks For<a class="headerlink" href="#what-the-vision-llm-looks-for" title="Permanent link">&para;</a></h3>
+<p>The vision model examines the image for indicators of AI generation:</p>
+<h4 id="anatomical-errors">Anatomical Errors<a class="headerlink" href="#anatomical-errors" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Wrong number of fingers, teeth, or eyes</li>
+<li>Malformed hands or impossible poses</li>
+<li>Asymmetric or distorted facial features</li>
+</ul>
+<h4 id="texture-anomalies">Texture Anomalies<a class="headerlink" href="#texture-anomalies" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Unnaturally smooth skin lacking pores</li>
+<li>Repeating patterns in backgrounds</li>
+<li>"Painted" or "waxy" appearance</li>
+</ul>
+<h4 id="lighting-inconsistencies">Lighting Inconsistencies<a class="headerlink" href="#lighting-inconsistencies" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Shadows pointing in different directions</li>
+<li>Missing or impossible reflections</li>
+<li>Light sources that don't match shadows</li>
+</ul>
+<h4 id="semantic-impossibilities">Semantic Impossibilities<a class="headerlink" href="#semantic-impossibilities" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Objects that don't make sense in context</li>
+<li>Garbled or nonsensical text</li>
+<li>Background elements that defy physics</li>
+</ul>
+<h3 id="vision-output">Vision Output<a class="headerlink" href="#vision-output" title="Permanent link">&para;</a></h3>
+<p>The vision step produces:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s2">&quot;visual_description&quot;</span><span class="p">:</span> <span class="s2">&quot;Portrait of a woman in her 30s...&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s2">&quot;synthesis_indicators&quot;</span><span class="p">:</span> <span class="s2">&quot;Possible extra finger on left hand...&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">&quot;verdict&quot;</span><span class="p">:</span> <span class="s2">&quot;fake&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="s2">&quot;rationale&quot;</span><span class="p">:</span> <span class="s2">&quot;Multiple anatomical anomalies suggest...&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="step-2-tool-augmented-analysis">Step 2: Tool-Augmented Analysis<a class="headerlink" href="#step-2-tool-augmented-analysis" title="Permanent link">&para;</a></h2>
+<p>When <code>use_tools=True</code>, the LangGraph ReAct agent takes over.</p>
+<h3 id="how-the-agent-decides">How the Agent Decides<a class="headerlink" href="#how-the-agent-decides" title="Permanent link">&para;</a></h3>
+<p>The agent receives:
+1. The visual description from Step 1
+2. The image path
+3. Access to forensic tools</p>
+<p>It then reasons about which tools would be most useful:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Initial visual analysis suggests possible manipulation in the 
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>background region. I should:
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1. Run TruFor to check for manipulation probability
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2. Run ELA to look for localized compression anomalies
+</span></code></pre></div>
+<h3 id="tool-selection-logic">Tool Selection Logic<a class="headerlink" href="#tool-selection-logic" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Visual Observation</th>
+<th>Likely Tool Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Possible splicing/compositing</td>
+<td>TruFor, ELA</td>
+</tr>
+<tr>
+<td>JPEG-looking image</td>
+<td>detect_jpeg_quantization, analyze_jpeg_compression</td>
+</tr>
+<tr>
+<td>Unusual textures/patterns</td>
+<td>extract_residuals, analyze_frequency_domain</td>
+</tr>
+<tr>
+<td>Metadata questions</td>
+<td>metadata</td>
+</tr>
+<tr>
+<td>Need custom analysis</td>
+<td>execute_python_code</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tool-iteration">Tool Iteration<a class="headerlink" href="#tool-iteration" title="Permanent link">&para;</a></h3>
+<p>The agent can call multiple tools, typically 1-3 per analysis:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Agent
+    participant TruFor
+    participant ELA
+
+    Agent-&gt;&gt;TruFor: perform_trufor(image_path)
+    TruFor--&gt;&gt;Agent: manipulation_probability: 0.87
+
+    Note over Agent: High probability - check ELA for localization
+
+    Agent-&gt;&gt;ELA: perform_ela(image_path)
+    ELA--&gt;&gt;Agent: ela_anomaly_score: 3.2, localized in upper-left
+
+    Note over Agent: Consistent evidence - conclude FAKE</code></pre>
+<hr />
+<h2 id="step-3-structuring">Step 3: Structuring<a class="headerlink" href="#step-3-structuring" title="Permanent link">&para;</a></h2>
+<p>The final step converts free-form reasoning into structured output.</p>
+<h3 id="why-separate-structuring">Why Separate Structuring?<a class="headerlink" href="#why-separate-structuring" title="Permanent link">&para;</a></h3>
+<p>Research shows that requiring structured output during reasoning can degrade LLM performance. DF3 uses a two-step approach:</p>
+<ol>
+<li><strong>Reasoning</strong> — LLM thinks freely in natural language</li>
+<li><strong>Structuring</strong> — Separate call extracts structured data</li>
+</ol>
+<p>This is implemented via BAML's <code>StructureForensicAnalysis</code> function.</p>
+<h3 id="final-output-schema">Final Output Schema<a class="headerlink" href="#final-output-schema" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ForensicAnalysisResult</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">verdict</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;real&quot;</span><span class="p">,</span> <span class="s2">&quot;fake&quot;</span><span class="p">,</span> <span class="s2">&quot;uncertain&quot;</span><span class="p">]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># 0.0 - 1.0</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">rationale</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># Max 80 words</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">visual_description</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">forensic_summary</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">full_text</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># Complete narrative</span>
+</span></code></pre></div>
+<hr />
+<h2 id="decision-logic">Decision Logic<a class="headerlink" href="#decision-logic" title="Permanent link">&para;</a></h2>
+<h3 id="when-to-say-fake">When to Say "FAKE"<a class="headerlink" href="#when-to-say-fake" title="Permanent link">&para;</a></h3>
+<p>Strong fake signals (any of these):</p>
+<ul>
+<li>TruFor <code>manipulation_probability</code> &gt; 0.8</li>
+<li>Clear visual anomalies (wrong anatomy, impossible physics)</li>
+<li>High ELA anomaly scores with localized patterns</li>
+<li>Multiple corroborating signals</li>
+</ul>
+<h3 id="when-to-say-real">When to Say "REAL"<a class="headerlink" href="#when-to-say-real" title="Permanent link">&para;</a></h3>
+<p>Strong real signals (need multiple):</p>
+<ul>
+<li>Natural appearance with no visual anomalies</li>
+<li>TruFor <code>manipulation_probability</code> &lt; 0.2</li>
+<li>Consistent lighting, physics, and anatomy</li>
+<li>Valid metadata with plausible provenance</li>
+</ul>
+<h3 id="when-to-say-uncertain">When to Say "UNCERTAIN"<a class="headerlink" href="#when-to-say-uncertain" title="Permanent link">&para;</a></h3>
+<p>Appropriate uncertainty:</p>
+<ul>
+<li>Mid-range tool scores (0.3 - 0.6)</li>
+<li>Conflicting evidence (visual says fake, tools say real)</li>
+<li>Low image quality prevents reliable analysis</li>
+<li>Evidence is genuinely ambiguous</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Uncertain is Valid</p>
+<p><code>uncertain</code> is not a failure — it's an appropriate response when evidence doesn't support a confident verdict. It enables intelligent triage to human reviewers.</p>
+</div>
+<hr />
+<h2 id="evidence-weighting">Evidence Weighting<a class="headerlink" href="#evidence-weighting" title="Permanent link">&para;</a></h2>
+<h3 id="visual-vs-tool-evidence">Visual vs Tool Evidence<a class="headerlink" href="#visual-vs-tool-evidence" title="Permanent link">&para;</a></h3>
+<p>DF3 weighs evidence differently based on image type:</p>
+<table>
+<thead>
+<tr>
+<th>Evidence Source</th>
+<th>AI-Generated</th>
+<th>Manipulated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visual analysis</td>
+<td>Primary</td>
+<td>Supporting</td>
+</tr>
+<tr>
+<td>TruFor</td>
+<td>Supporting</td>
+<td>Primary</td>
+</tr>
+<tr>
+<td>ELA</td>
+<td>Neutral</td>
+<td>Primary</td>
+</tr>
+<tr>
+<td>Frequency analysis</td>
+<td>Supporting</td>
+<td>Supporting</td>
+</tr>
+</tbody>
+</table>
+<h3 id="conflicting-evidence">Conflicting Evidence<a class="headerlink" href="#conflicting-evidence" title="Permanent link">&para;</a></h3>
+<p>When visual and tool evidence conflict:</p>
+<ol>
+<li><strong>Visual says fake, tools say clean</strong> → Likely AI-generated (tools don't detect synthesis)</li>
+<li><strong>Visual says real, tools say fake</strong> → Trust tools (they detect things humans miss)</li>
+<li><strong>Both ambiguous</strong> → Report uncertain</li>
+</ol>
+<hr />
+<h2 id="performance-considerations">Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="latency-breakdown">Latency Breakdown<a class="headerlink" href="#latency-breakdown" title="Permanent link">&para;</a></h3>
+<p>Typical analysis times:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>No-Tools Mode</th>
+<th>Tools Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vision LLM call</td>
+<td>2-5s</td>
+<td>2-5s</td>
+</tr>
+<tr>
+<td>Tool execution</td>
+<td>—</td>
+<td>3-15s</td>
+</tr>
+<tr>
+<td>Agent reasoning</td>
+<td>—</td>
+<td>2-8s</td>
+</tr>
+<tr>
+<td>Structuring</td>
+<td>1-2s</td>
+<td>1-2s</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>3-7s</strong></td>
+<td><strong>8-30s</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<p>DF3 caches:</p>
+<ul>
+<li><strong>Vision outputs</strong> — Keyed by image hash + model + prompt hash</li>
+<li><strong>Tool outputs</strong> — Keyed by image hash + tool name + parameters</li>
+</ul>
+<p>Enable/disable via <code>--enable-tool-cache</code> / <code>--disable-tool-cache</code>.</p>
+<hr />
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<div class="feature-grid">
+<div class="feature-card">
+<h3 id="forensic-tools"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> Forensic Tools<a class="headerlink" href="#forensic-tools" title="Permanent link">&para;</a></h3>
+<p>Deep dive into each tool and what it detects.</p>
+<p><a href="../../tools/overview/">Tools Overview →</a></p>
+</div>
+<div class="feature-card">
+<h3 id="architecture"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg></span> Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h3>
+<p>Technical details of the system implementation.</p>
+<p><a href="../../architecture/overview/">System Overview →</a></p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

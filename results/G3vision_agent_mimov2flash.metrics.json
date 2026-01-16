@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "temperature": 0.0,
+    "max_iterations": 15,
+    "trials": 1,
+    "num_workers": 6,
+    "reasoning_effort": null,
+    "generated_at_unix": 1768227180.5764425,
+    "cancelled": false,
+    "completed_records": 200
+  },
+  "xiaomi/mimo-v2-flash:free|tools": {
+    "per_trial": {
+      "0": {
+        "total": 200,
+        "correct": 130,
+        "answered": 172,
+        "accuracy": 0.65,
+        "accuracy_answered": 0.7558139534883721,
+        "coverage": 0.86,
+        "precision_fake": 0.9534883720930233,
+        "recall_fake": 0.5061728395061729,
+        "f1_fake": 0.6612903225806452,
+        "precision_real": 0.689922480620155,
+        "recall_real": 0.978021978021978,
+        "f1_real": 0.8090909090909091,
+        "balanced_accuracy": 0.7420974087640755,
+        "balanced_accuracy_answered": 0.7420974087640755,
+        "precision_fake_answered": 0.9534883720930233,
+        "recall_fake_answered": 0.5061728395061729,
+        "f1_fake_answered": 0.6612903225806452,
+        "precision_real_answered": 0.689922480620155,
+        "recall_real_answered": 0.978021978021978,
+        "f1_real_answered": 0.8090909090909091,
+        "avg_confidence": 0.8340116279069767,
+        "avg_latency_seconds": 45.70390126871508,
+        "avg_tool_count": 0.0,
+        "avg_tool_seconds_total": 0.0,
+        "abstain_count": 28,
+        "abstain_count_fake": 17,
+        "abstain_count_real": 11,
+        "error_count": 0,
+        "abstain_rate": 0.14,
+        "abstain_rate_fake": 0.17346938775510204,
+        "abstain_rate_real": 0.10784313725490197,
+        "error_rate": 0.0,
+        "coverage_fake": 0.826530612244898,
+        "coverage_real": 0.8921568627450981,
+        "fake_slip_rate": 0.40816326530612246,
+        "real_false_flag_rate": 0.0196078431372549,
+        "fake_catch_rate": 0.41836734693877553,
+        "real_pass_rate": 0.8725490196078431,
+        "confusion": {
+          "tp": 41,
+          "tn": 89,
+          "fp": 2,
+          "fn": 40
+        },
+        "support": {
+          "real": 102,
+          "fake": 98
+        }
+      }
+    },
+    "summary": {
+      "mean": {
+        "accuracy": 0.65,
+        "accuracy_answered": 0.7558139534883721,
+        "coverage": 0.86,
+        "balanced_accuracy": 0.7420974087640755,
+        "balanced_accuracy_answered": 0.7420974087640755,
+        "f1_fake": 0.6612903225806452,
+        "f1_real": 0.8090909090909091,
+        "precision_fake": 0.9534883720930233,
+        "recall_fake": 0.5061728395061729,
+        "precision_real": 0.689922480620155,
+        "recall_real": 0.978021978021978,
+        "abstain_rate": 0.14,
+        "abstain_rate_fake": 0.17346938775510204,
+        "abstain_rate_real": 0.10784313725490197,
+        "coverage_fake": 0.826530612244898,
+        "coverage_real": 0.8921568627450981,
+        "fake_slip_rate": 0.40816326530612246,
+        "real_false_flag_rate": 0.0196078431372549,
+        "fake_catch_rate": 0.41836734693877553,
+        "real_pass_rate": 0.8725490196078431
+      },
+      "std": {
+        "accuracy": 0.0,
+        "accuracy_answered": 0.0,
+        "coverage": 0.0,
+        "balanced_accuracy": 0.0,
+        "balanced_accuracy_answered": 0.0,
+        "f1_fake": 0.0,
+        "f1_real": 0.0,
+        "precision_fake": 0.0,
+        "recall_fake": 0.0,
+        "precision_real": 0.0,
+        "recall_real": 0.0,
+        "abstain_rate": 0.0,
+        "abstain_rate_fake": 0.0,
+        "abstain_rate_real": 0.0,
+        "coverage_fake": 0.0,
+        "coverage_real": 0.0,
+        "fake_slip_rate": 0.0,
+        "real_false_flag_rate": 0.0,
+        "fake_catch_rate": 0.0,
+        "real_pass_rate": 0.0
+      },
+      "mean_error_rate": 0.0,
+      "mean_abstain_rate": 0.14,
+      "totals": {
+        "avg_total": 200,
+        "avg_support_fake": 98,
+        "avg_support_real": 102
+      }
+    }
+  }
+}

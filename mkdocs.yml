@@ -1,0 +1,133 @@
+site_name: DF3 - Forensic Image Analysis
+site_description: Agentic forensic image analysis system for detecting AI-generated and manipulated images
+site_author: DF3 Team
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    logo: material/shield-search
+
+docs_dir: markdown_docs
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Research:
+      - Key Findings: research/findings.md
+      - Design Decisions: research/design-decisions.md
+      - Limitations: research/limitations.md
+      - Reproducibility: research/reproducibility.md
+      - Delivery Checklist: research/delivery-checklist.md
+  - Getting Started:
+      - Quick Start: getting-started/quickstart.md
+      - Installation: getting-started/installation.md
+      - Your First Analysis: getting-started/first-analysis.md
+  - User Guide:
+      - How It Works: guide/how-it-works.md
+      - Analyzing Images: guide/analyzing-images.md
+      - Batch Evaluation: guide/batch-evaluation.md
+      - Interpreting Results: guide/interpreting-results.md
+  - Architecture:
+      - System Overview: architecture/overview.md
+      - Agent Pipeline: architecture/agent-pipeline.md
+      - BAML Integration: architecture/baml-integration.md
+  - Forensic Tools:
+      - Tools Overview: tools/overview.md
+      - TruFor: tools/trufor.md
+      - Error Level Analysis: tools/ela.md
+      - JPEG Analysis: tools/jpeg.md
+      - Frequency Analysis: tools/frequency.md
+      - Residual Analysis: tools/residuals.md
+      - Metadata and C2PA: tools/metadata.md
+      - Code Execution: tools/code-execution.md
+  - API Reference:
+      - ForensicAgent: api/forensic-agent.md
+      - BAML Functions: api/baml-functions.md
+      - Tool Functions: api/tool-functions.md
+  - Evaluation:
+      - Methodology: evaluation/methodology.md
+      - Metrics Reference: evaluation/metrics.md
+      - Benchmark Results: evaluation/results.md
+      - Dataset Provenance: evaluation/dataset-provenance.md
+  - Reference:
+      - Configuration: reference/configuration.md
+      - Environment Variables: reference/environment.md
+      - Prompts: reference/prompts.md
+      - SWGDE Best Practices: reference/swgde.md
+      - Troubleshooting: reference/troubleshooting.md
+      - FAQ: reference/faq.md
+  - Team: team.md
+  - References: references.md

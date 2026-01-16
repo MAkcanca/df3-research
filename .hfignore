@@ -1,0 +1,49 @@
+# Hugging Face Spaces ignore file
+# Files/directories listed here will be excluded from the Space
+
+# Example images (not needed for deployment)
+example_images/
+
+# Development files
+.git/
+.gitignore
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Documentation (optional - uncomment if you want to exclude)
+# *.md
+# !README.md
+
+# Test files (optional)
+# tests/
+# test_*.py
+# *_test.py
+
+# Local configuration
+.env.local
+.env.*.local
+.claude/
+
+# Large model files (if not using auto-download)
+# weights/  # Uncomment if you want to exclude weights and rely on auto-download
+
+
+
+
+
+
