@@ -1,0 +1,3461 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Agentic forensic image analysis system for detecting AI-generated and manipulated images">
+      
+      
+        <meta name="author" content="DF3 Team">
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../design-decisions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Key Findings - DF3 - Forensic Image Analysis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#research-findings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DF3 - Forensic Image Analysis" class="md-header__button md-logo" aria-label="DF3 - Forensic Image Analysis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DF3 - Forensic Image Analysis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Key Findings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DF3 - Forensic Image Analysis" class="md-nav__button md-logo" aria-label="DF3 - Forensic Image Analysis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg>
+
+    </a>
+    DF3 - Forensic Image Analysis
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Findings
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#research-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Research Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-two-phase-approach-df2-and-df3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Two-Phase Approach: DF2 and DF3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experimental-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Experimental Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experimental Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models-evaluated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models Evaluated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantitative-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantitative Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-caveats-on-performance-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Caveats on Performance Numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-value-proposition-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Value Proposition: Explainability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Core Value Proposition: Explainability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-explainability-matters-for-forensics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Explainability Matters for Forensics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-df2-vs-df3-output-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: DF2 vs DF3 Output Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transparency-of-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transparency of Reasoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Use Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-1-high-volume-triage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 1: High-Volume Triage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-2-forensic-report-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 2: Forensic Report Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-3-educational-and-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 3: Educational and Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-4-preliminary-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 4: Preliminary Assessment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insights-for-future-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insights for Future Research
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insights for Future Research">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insight-1-tools-need-task-specific-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 1: Tools Need Task-Specific Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-2-few-shot-may-beat-zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 2: Few-Shot May Beat Zero-Shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-3-hybrid-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 3: Hybrid Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-4-evaluation-on-novel-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 4: Evaluation on Novel Distributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-5-the-three-way-classification-has-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 5: The Three-Way Classification Has Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-df2-vs-df3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison: DF2 vs DF3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-this-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations of This Research
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limitations of This Research">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-trial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Trial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-data-contamination-unknown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training Data Contamination Unknown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-task-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool-Task Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-baseline-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Baseline Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#artifacts-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts and Reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Artifacts and Reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#result-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproduction-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproduction Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-provenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset Provenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reproducibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delivery-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your First Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/analyzing-images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analyzing Images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/batch-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/interpreting-results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interpreting Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/agent-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/baml-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAML Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forensic Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Forensic Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/trufor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TruFor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/ela/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Level Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/jpeg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JPEG Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/frequency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequency Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/residuals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Residual Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata and C2PA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/code-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/forensic-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ForensicAgent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/baml-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAML Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/tool-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evaluation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmark Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation/dataset-provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Provenance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/swgde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SWGDE Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#research-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Research Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-two-phase-approach-df2-and-df3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Two-Phase Approach: DF2 and DF3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experimental-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Experimental Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experimental Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models-evaluated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models Evaluated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantitative-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantitative Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-caveats-on-performance-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Caveats on Performance Numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-core-value-proposition-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Core Value Proposition: Explainability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Core Value Proposition: Explainability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-explainability-matters-for-forensics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Explainability Matters for Forensics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-df2-vs-df3-output-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: DF2 vs DF3 Output Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transparency-of-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transparency of Reasoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Use Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-case-1-high-volume-triage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 1: High-Volume Triage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-2-forensic-report-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 2: Forensic Report Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-3-educational-and-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 3: Educational and Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-case-4-preliminary-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case 4: Preliminary Assessment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insights-for-future-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insights for Future Research
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insights for Future Research">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insight-1-tools-need-task-specific-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 1: Tools Need Task-Specific Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-2-few-shot-may-beat-zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 2: Few-Shot May Beat Zero-Shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-3-hybrid-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 3: Hybrid Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-4-evaluation-on-novel-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 4: Evaluation on Novel Distributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insight-5-the-three-way-classification-has-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insight 5: The Three-Way Classification Has Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-df2-vs-df3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison: DF2 vs DF3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-this-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations of This Research
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Limitations of This Research">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-trial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Trial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-data-contamination-unknown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training Data Contamination Unknown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-task-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool-Task Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-baseline-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Baseline Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#artifacts-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts and Reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Artifacts and Reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#result-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproduction-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproduction Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-provenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset Provenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="research-findings">Research Findings<a class="headerlink" href="#research-findings" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>DF3 demonstrates that <strong>LLM-based forensic analysis can provide explainable, auditable image authentication</strong> suitable for triage workflows and human-in-the-loop forensic processes. While raw accuracy metrics favor traditional ML approaches, the system's ability to articulate reasoning in natural language represents a distinct capability valuable for forensic applications.</p>
+<p><strong>Key Findings</strong>:</p>
+<ol>
+<li>Vision-capable LLMs can detect AI-generated images with reasonable accuracy (up to 92.8%), but this performance may be confounded by training data overlap</li>
+<li>Adding forensic tools did not improve detection accuracy in our evaluation, likely due to tool-task mismatch and the challenge of zero-shot tool interpretation</li>
+<li>The primary value proposition is <strong>explainability</strong>: LLM-generated reasoning provides transparent, auditable analysis suitable for forensic reporting</li>
+<li>The system enables effective <strong>triage workflows</strong> where uncertain cases route to human experts</li>
+</ol>
+<hr />
+<h2 id="research-context">Research Context<a class="headerlink" href="#research-context" title="Permanent link">&para;</a></h2>
+<h3 id="the-two-phase-approach-df2-and-df3">The Two-Phase Approach: DF2 and DF3<a class="headerlink" href="#the-two-phase-approach-df2-and-df3" title="Permanent link">&para;</a></h3>
+<p>This research builds on <strong>DF2</strong>, a traditional machine learning classifier developed in the first phase:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>DF2 (Random Forest/Logistic)</th>
+<th>DF3 (LLM Agent)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Architecture</td>
+<td>Logistic regression on extracted features</td>
+<td>Vision LLM + LangGraph ReAct agent</td>
+</tr>
+<tr>
+<td>Training</td>
+<td>166,000+ images</td>
+<td>No task-specific training</td>
+</tr>
+<tr>
+<td>Features</td>
+<td>21 scalar forensic features</td>
+<td>Same tools, different interface</td>
+</tr>
+<tr>
+<td>Primary output</td>
+<td>Probability score P(fake)</td>
+<td>Verdict + natural language reasoning</td>
+</tr>
+<tr>
+<td>Accuracy (AUROC)</td>
+<td>0.9996</td>
+<td>Not directly comparable</td>
+</tr>
+<tr>
+<td>Explainability</td>
+<td>Template-based evidence citing</td>
+<td>Free-form reasoning with evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critical insight from DF2</strong>: The forensic tools (Noiseprint, DRUNet residuals, frequency analysis) <strong>do provide discriminative signal</strong>. DF2's ablation study demonstrates:
+- Removing Noiseprint: AUROC drops from 0.9966 to 0.9777 (-1.89%)
+- Removing frequency features: AUROC drops to 0.9829 (-1.37%)</p>
+<p>The tools work. The question is whether LLMs can interpret them effectively without training.</p>
+<h3 id="research-questions">Research Questions<a class="headerlink" href="#research-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Can LLMs provide explainable forensic image analysis?</strong></li>
+<li><strong>Can LLMs effectively interpret forensic tool outputs without task-specific training?</strong></li>
+<li><strong>What is the appropriate role for LLM-based detection in forensic workflows?</strong></li>
+</ol>
+<hr />
+<h2 id="experimental-design">Experimental Design<a class="headerlink" href="#experimental-design" title="Permanent link">&para;</a></h2>
+<h3 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total samples</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Class balance</td>
+<td>247 fake (49.4%), 253 real (50.6%)</td>
+</tr>
+<tr>
+<td>Fake sources</td>
+<td>GenImage, DRAGON, Nano-banana-150k</td>
+</tr>
+<tr>
+<td>Real sources</td>
+<td>ImageNet (via GenImage), Nano-banana</td>
+</tr>
+<tr>
+<td>Fake type</td>
+<td>Primarily AI-generated (not manipulated)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evaluation-configurations">Evaluation Configurations<a class="headerlink" href="#evaluation-configurations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Vision-only</strong>: LLM analyzes image directly, no forensic tools</li>
+<li><strong>Tool-augmented</strong>: LLM uses initial vision analysis, then invokes forensic tools via LangGraph ReAct agent, synthesizes findings</li>
+</ol>
+<h3 id="models-evaluated">Models Evaluated<a class="headerlink" href="#models-evaluated" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Google Gemini 3 Flash Preview</li>
+<li>OpenAI GPT-5.2, GPT-5-mini</li>
+<li>Anthropic Claude Sonnet 4.5</li>
+<li>Zhipu AI GLM-4.6, GLM-4.7</li>
+<li>DeepSeek, Grok, Kimi, MIMO</li>
+</ul>
+<hr />
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
+<h3 id="quantitative-performance">Quantitative Performance<a class="headerlink" href="#quantitative-performance" title="Permanent link">&para;</a></h3>
+<h4 id="vision-only-mode-n500">Vision-Only Mode (n=500)<a class="headerlink" href="#vision-only-mode-n500" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Coverage</th>
+<th>Acc(answered)</th>
+<th>Abstention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemini 3 Flash Preview</td>
+<td>0.928</td>
+<td>0.984</td>
+<td>0.943</td>
+<td>1.6%</td>
+</tr>
+<tr>
+<td>GLM-4.7</td>
+<td>0.914</td>
+<td>0.980</td>
+<td>0.933</td>
+<td>2.0%</td>
+</tr>
+<tr>
+<td>GPT-5.2</td>
+<td>0.074</td>
+<td>0.078</td>
+<td>0.949</td>
+<td>92.2%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="tool-augmented-mode-n500">Tool-Augmented Mode (n=500)<a class="headerlink" href="#tool-augmented-mode-n500" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Coverage</th>
+<th>Acc(answered)</th>
+<th>Abstention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemini 3 Flash Preview</td>
+<td>0.782</td>
+<td>0.934</td>
+<td>0.837</td>
+<td>6.2%</td>
+</tr>
+<tr>
+<td>GLM-4.7</td>
+<td>0.456</td>
+<td>0.508</td>
+<td>0.898</td>
+<td>49.0%</td>
+</tr>
+<tr>
+<td>GPT-5.2</td>
+<td>0.080</td>
+<td>0.112</td>
+<td>0.714</td>
+<td>88.8%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="critical-caveats-on-performance-numbers">Critical Caveats on Performance Numbers<a class="headerlink" href="#critical-caveats-on-performance-numbers" title="Permanent link">&para;</a></h3>
+<h4 id="caveat-1-training-data-contamination">Caveat 1: Training Data Contamination<a class="headerlink" href="#caveat-1-training-data-contamination" title="Permanent link">&para;</a></h4>
+<p>The high vision-only accuracy (92.8% for Gemini 3 Flash) must be interpreted cautiously:</p>
+<ul>
+<li><strong>GenImage</strong>, <strong>DRAGON</strong>, and <strong>Nano-banana</strong> are publicly available datasets</li>
+<li>Modern vision LLMs may have been trained on these or similar synthetic images</li>
+<li>If a model has "seen" these images (or images from the same generators) during training, it may recognize them without possessing generalizable detection capability</li>
+</ul>
+<p><strong>Implication</strong>: Vision-only accuracy on this dataset does not necessarily indicate robust detection capability on novel generators or unseen image distributions.</p>
+<h4 id="caveat-2-tool-task-mismatch">Caveat 2: Tool-Task Mismatch<a class="headerlink" href="#caveat-2-tool-task-mismatch" title="Permanent link">&para;</a></h4>
+<p>The forensic tools available to DF3 were designed primarily for <strong>manipulation detection</strong> (splicing, copy-move, inpainting), not <strong>AI-generation detection</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Primary Design Purpose</th>
+<th>Signal for AI-Generated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TruFor</td>
+<td>Manipulation/forgery detection</td>
+<td>Weak (outputs low scores)</td>
+</tr>
+<tr>
+<td>ELA</td>
+<td>JPEG editing detection</td>
+<td>Weak (no editing occurred)</td>
+</tr>
+<tr>
+<td>JPEG quantization</td>
+<td>Double-compression detection</td>
+<td>Neutral</td>
+</tr>
+<tr>
+<td>Frequency analysis</td>
+<td>Upsampling/resampling artifacts</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Residual extraction</td>
+<td>Noise pattern anomalies</td>
+<td>Moderate</td>
+</tr>
+</tbody>
+</table>
+<p>AI-generated images are internally consistent—they were never "edited." Tools designed to detect editing artifacts find little signal. This is not a failure of the LLM; it's a mismatch between available tools and the detection task.</p>
+<h4 id="caveat-3-zero-shot-tool-interpretation">Caveat 3: Zero-Shot Tool Interpretation<a class="headerlink" href="#caveat-3-zero-shot-tool-interpretation" title="Permanent link">&para;</a></h4>
+<p>DF2 achieved 99.96% AUROC because it <strong>learned</strong> how to combine forensic features from 166,000 labeled examples. The logistic regression discovered decision boundaries like:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>If noiseprint_std &gt; X AND fft_low_energy &gt; Y → likely fake
+</span></code></pre></div>
+<p>DF3 asks the LLM to discover these patterns from first principles, with only prompt instructions. This is fundamentally harder:</p>
+<ul>
+<li>DF2: Supervised learning on 166k examples</li>
+<li>DF3: Zero-shot reasoning with tool descriptions</li>
+</ul>
+<p>The LLM must interpret numeric outputs (e.g., "TruFor: 0.14") without having learned what constitutes a meaningful threshold for this specific dataset.</p>
+<hr />
+<h2 id="the-core-value-proposition-explainability">The Core Value Proposition: Explainability<a class="headerlink" href="#the-core-value-proposition-explainability" title="Permanent link">&para;</a></h2>
+<h3 id="why-explainability-matters-for-forensics">Why Explainability Matters for Forensics<a class="headerlink" href="#why-explainability-matters-for-forensics" title="Permanent link">&para;</a></h3>
+<p>In forensic contexts, a probability score is often insufficient. Investigators, attorneys, and courts need to understand:</p>
+<ol>
+<li><strong>What evidence</strong> supports the conclusion</li>
+<li><strong>What analysis</strong> was performed</li>
+<li><strong>What limitations</strong> apply to the finding</li>
+<li><strong>What alternative explanations</strong> were considered</li>
+</ol>
+<p>LLMs provide this naturally through their reasoning output.</p>
+<h3 id="example-df2-vs-df3-output-comparison">Example: DF2 vs DF3 Output Comparison<a class="headerlink" href="#example-df2-vs-df3-output-comparison" title="Permanent link">&para;</a></h3>
+<p><strong>DF2 Output</strong> (template-based):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Prediction: FAKE (confidence: 0.94)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Evidence:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>- Noiseprint mismatch: 3.21 (threshold: 2.50) - SUPPORTS FAKE
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>- Residual energy p95: 0.087 (elevated) - SUPPORTS FAKE
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>- FFT peakiness: 1.42 (normal range) - NEUTRAL
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Uncertainty: LOW (Mahalanobis distance within expected range)
+</span></code></pre></div></p>
+<p><strong>DF3 Output</strong> (LLM reasoning):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>### Visual Analysis
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>This portrait shows a young woman with long dark hair against a neutral
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>background. Several synthesis indicators are present:
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- The hair strands on the left shoulder dissolve into the background
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  rather than possessing physical depth
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>- The skin texture is hyper-smooth, lacking natural pores or
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  micro-imperfections typical of photographs
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>- The transition between ear and hair shows unnatural blending
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>### Tool Evidence
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>- TruFor manipulation_probability: 0.14 (low)
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>- ELA anomaly_score: 1.2 (within normal range)
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>### Interpretation
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>The low manipulation scores are expected for AI-generated images,
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>as they are internally consistent and show no editing artifacts.
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>The visual anomalies—particularly the impossible hair physics and
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>unnaturally smooth skin—are characteristic of diffusion model outputs.
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>### Verdict: FAKE
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>### Confidence: 0.85
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>The image exhibits multiple visual hallmarks of AI generation. While
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>forensic tools show no manipulation (expected for synthetic images),
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>the anatomical and textural anomalies strongly indicate synthesis.
+</span></code></pre></div></p>
+<p>The DF3 output is suitable for:
+- Forensic reports that will be reviewed by non-technical stakeholders
+- Legal proceedings where reasoning must be articulated
+- Training materials for forensic examiners
+- Cases where the conclusion may be challenged</p>
+<h3 id="transparency-of-reasoning">Transparency of Reasoning<a class="headerlink" href="#transparency-of-reasoning" title="Permanent link">&para;</a></h3>
+<p>Unlike black-box classifiers, LLM reasoning can be:</p>
+<ol>
+<li><strong>Audited</strong>: Reviewers can check if the reasoning is sound</li>
+<li><strong>Challenged</strong>: Errors in reasoning can be identified and corrected</li>
+<li><strong>Documented</strong>: The analysis becomes part of the case record</li>
+<li><strong>Educational</strong>: Shows what indicators are relevant for detection</li>
+</ol>
+<hr />
+<h2 id="practical-use-cases">Practical Use Cases<a class="headerlink" href="#practical-use-cases" title="Permanent link">&para;</a></h2>
+<h3 id="use-case-1-high-volume-triage">Use Case 1: High-Volume Triage<a class="headerlink" href="#use-case-1-high-volume-triage" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: A forensic agency receives 100,000 images requiring authentication assessment.</p>
+<p><strong>Workflow</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>100,000 images
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    ↓
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>DF3 Vision-Only Analysis (fast, ~5s/image)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    ↓
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── High confidence REAL (60%) → Auto-clear
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>├── High confidence FAKE (25%) → Auto-flag for review
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>└── UNCERTAIN (15%) → Human expert review
+</span></code></pre></div></p>
+<p><strong>Value</strong>:
+- 85% of images handled automatically with reasoning documented
+- Human experts focus on genuinely ambiguous cases
+- Each decision includes explanation for audit trail</p>
+<h3 id="use-case-2-forensic-report-generation">Use Case 2: Forensic Report Generation<a class="headerlink" href="#use-case-2-forensic-report-generation" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: An examiner needs to document their analysis of a suspected deepfake.</p>
+<p><strong>Workflow</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Suspicious image
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    ↓
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>DF3 Analysis (tools + vision)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    ↓
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Generate SWGDE-compliant report
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    ↓
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Expert reviews/validates reasoning
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    ↓
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Final report for case file
+</span></code></pre></div></p>
+<p><strong>Value</strong>:
+- Structured analysis following forensic standards
+- Natural language suitable for reports
+- Expert retains final judgment authority</p>
+<h3 id="use-case-3-educational-and-training">Use Case 3: Educational and Training<a class="headerlink" href="#use-case-3-educational-and-training" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: Training new forensic examiners on AI-generated image detection.</p>
+<p><strong>Workflow</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Training images (known ground truth)
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    ↓
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>DF3 Analysis with detailed reasoning
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    ↓
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Compare LLM reasoning to expert analysis
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    ↓
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Identify what indicators matter
+</span></code></pre></div></p>
+<p><strong>Value</strong>:
+- Demonstrates analytical reasoning process
+- Shows what visual/forensic cues are relevant
+- Provides worked examples for learning</p>
+<h3 id="use-case-4-preliminary-assessment">Use Case 4: Preliminary Assessment<a class="headerlink" href="#use-case-4-preliminary-assessment" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: Quick assessment needed before committing to full forensic analysis.</p>
+<p><strong>Workflow</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Image of interest
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    ↓
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>DF3 Vision-Only (2-10 seconds)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    ↓
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>├── Clear indicators → Preliminary finding documented
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>└── Ambiguous → Full forensic workup warranted
+</span></code></pre></div></p>
+<p><strong>Value</strong>:
+- Fast initial assessment
+- Documented reasoning even for preliminary findings
+- Helps prioritize resource allocation</p>
+<hr />
+<h2 id="insights-for-future-research">Insights for Future Research<a class="headerlink" href="#insights-for-future-research" title="Permanent link">&para;</a></h2>
+<h3 id="insight-1-tools-need-task-specific-design">Insight 1: Tools Need Task-Specific Design<a class="headerlink" href="#insight-1-tools-need-task-specific-design" title="Permanent link">&para;</a></h3>
+<p>DF2 proved that forensic features can achieve near-perfect detection. But those features were designed for the same distribution they were evaluated on. For LLM agents to benefit from tools:</p>
+<ul>
+<li><strong>Develop AI-generation-specific tools</strong>: Detectors trained specifically on diffusion/GAN outputs</li>
+<li><strong>Provide threshold guidance</strong>: Include calibrated thresholds in tool descriptions</li>
+<li><strong>Return confidence intervals</strong>: Help LLMs understand measurement uncertainty</li>
+</ul>
+<h3 id="insight-2-few-shot-may-beat-zero-shot">Insight 2: Few-Shot May Beat Zero-Shot<a class="headerlink" href="#insight-2-few-shot-may-beat-zero-shot" title="Permanent link">&para;</a></h3>
+<p>DF3's tool-augmented mode asks LLMs to interpret forensic outputs zero-shot. Consider:</p>
+<ul>
+<li><strong>Few-shot examples</strong>: Show 3-5 examples of correct tool interpretation in the prompt</li>
+<li><strong>Calibration data</strong>: Provide distribution statistics ("typical real images score 0.1-0.3")</li>
+<li><strong>Decision rules</strong>: Extract DF2's learned rules and provide them explicitly</li>
+</ul>
+<h3 id="insight-3-hybrid-architectures">Insight 3: Hybrid Architectures<a class="headerlink" href="#insight-3-hybrid-architectures" title="Permanent link">&para;</a></h3>
+<p>The optimal system may combine DF2 and DF3 approaches:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Image
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    ↓
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>DF2: Extract features → Trained classifier → P(fake)
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    ↓
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>DF3: Vision analysis → Integrate DF2 score as &quot;tool&quot; → Reasoning
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    ↓
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Output: Probability + Explanation
+</span></code></pre></div>
+<p>This leverages DF2's discriminative power with DF3's explanatory capability.</p>
+<h3 id="insight-4-evaluation-on-novel-distributions">Insight 4: Evaluation on Novel Distributions<a class="headerlink" href="#insight-4-evaluation-on-novel-distributions" title="Permanent link">&para;</a></h3>
+<p>Future evaluation should use:
+- Images from generators not in training data
+- Temporal holdout (new models released after data collection)
+- Cross-domain evaluation (different content types)</p>
+<p>This avoids the contamination concern that affects our vision-only results.</p>
+<h3 id="insight-5-the-three-way-classification-has-value">Insight 5: The Three-Way Classification Has Value<a class="headerlink" href="#insight-5-the-three-way-classification-has-value" title="Permanent link">&para;</a></h3>
+<p>The UNCERTAIN verdict is a feature:</p>
+<table>
+<thead>
+<tr>
+<th>Traditional Binary</th>
+<th>DF3 Three-Way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Force decision on ambiguous cases</td>
+<td>Route ambiguous cases to humans</td>
+</tr>
+<tr>
+<td>Hide uncertainty in low confidence</td>
+<td>Make uncertainty explicit</td>
+</tr>
+<tr>
+<td>Same output for "confident wrong" and "uncertain"</td>
+<td>Distinguish confident vs uncertain</td>
+</tr>
+</tbody>
+</table>
+<p>For forensic applications, knowing when the system is uncertain is as valuable as knowing its prediction.</p>
+<hr />
+<h2 id="comparison-df2-vs-df3">Comparison: DF2 vs DF3<a class="headerlink" href="#comparison-df2-vs-df3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>DF2</th>
+<th>DF3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td>Higher (AUROC 0.9996)</td>
+<td>Lower (varies by model)</td>
+</tr>
+<tr>
+<td><strong>Explainability</strong></td>
+<td>Template-based</td>
+<td>Free-form reasoning</td>
+</tr>
+<tr>
+<td><strong>Generalization</strong></td>
+<td>Limited to training distribution</td>
+<td>Unknown (contamination concern)</td>
+</tr>
+<tr>
+<td><strong>Speed</strong></td>
+<td>Fast (&lt;1s)</td>
+<td>Slower (5-90s)</td>
+</tr>
+<tr>
+<td><strong>Human oversight</strong></td>
+<td>Score requires interpretation</td>
+<td>Reasoning is human-readable</td>
+</tr>
+<tr>
+<td><strong>Adaptability</strong></td>
+<td>Requires retraining</td>
+<td>Prompt engineering</td>
+</tr>
+<tr>
+<td><strong>Tool integration</strong></td>
+<td>Fixed feature set</td>
+<td>Dynamic tool selection</td>
+</tr>
+<tr>
+<td><strong>Uncertainty handling</strong></td>
+<td>Calibrated probability</td>
+<td>Three-way classification</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation</strong>: Use DF2 for high-throughput automated screening. Use DF3 when explainability is required or for human-in-the-loop workflows.</p>
+<hr />
+<h2 id="limitations-of-this-research">Limitations of This Research<a class="headerlink" href="#limitations-of-this-research" title="Permanent link">&para;</a></h2>
+<h3 id="single-dataset">Single Dataset<a class="headerlink" href="#single-dataset" title="Permanent link">&para;</a></h3>
+<p>All evaluation used one dataset (subset and combination of GenImage + DRAGON + Nano-banana + more for df2). Results may not generalize to other distributions.</p>
+<h3 id="single-trial">Single Trial<a class="headerlink" href="#single-trial" title="Permanent link">&para;</a></h3>
+<p>Most configurations were run once or twice. No variance estimates are available.</p>
+<h3 id="training-data-contamination-unknown">Training Data Contamination Unknown<a class="headerlink" href="#training-data-contamination-unknown" title="Permanent link">&para;</a></h3>
+<p>We cannot verify whether evaluated models were trained on our test images or similar data, because open-data models are rare.</p>
+<h3 id="tool-task-mismatch">Tool-Task Mismatch<a class="headerlink" href="#tool-task-mismatch" title="Permanent link">&para;</a></h3>
+<p>Forensic tools optimized for manipulation detection were applied to AI-generation detection.</p>
+<h3 id="no-baseline-comparison">No Baseline Comparison<a class="headerlink" href="#no-baseline-comparison" title="Permanent link">&para;</a></h3>
+<p>We did not compare against purpose-built AI-generated image detectors (e.g., DIRE, UnivFD).</p>
+<hr />
+<h2 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h2>
+<p>DF3 demonstrates that LLM-based forensic image analysis is technically feasible and provides unique value through explainability. The system is best understood not as a replacement for traditional detectors, but as a complementary capability for workflows requiring:</p>
+<ol>
+<li><strong>Auditable reasoning</strong> that can be reviewed and challenged</li>
+<li><strong>Natural language output</strong> suitable for reports and legal proceedings</li>
+<li><strong>Human-in-the-loop triage</strong> where uncertain cases are escalated</li>
+<li><strong>Flexible analysis</strong> that can be adapted through prompting</li>
+</ol>
+<p>The finding that tools did not improve accuracy should not be interpreted as "tools are useless", DF2 proves they provide signal. Rather, it indicates that <strong>zero-shot tool interpretation by LLMs is a deeper problem</strong> that warrants further research.</p>
+<p>Future work should focus on:
+- Developing AI-generation-specific forensic tools
+- Exploring few-shot tool interpretation
+- Hybrid architectures combining trained classifiers with LLM reasoning
+- Rigorous evaluation on temporally held-out, novel generators</p>
+<hr />
+<h2 id="artifacts-and-reproducibility">Artifacts and Reproducibility<a class="headerlink" href="#artifacts-and-reproducibility" title="Permanent link">&para;</a></h2>
+<h3 id="result-files">Result Files<a class="headerlink" href="#result-files" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>results/G3visiononly_notools.jsonl</code> — Best vision-only results</li>
+<li><code>results/B_or_g3flashprev.jsonl</code> — Best tool-augmented results</li>
+<li>Additional per-model results in <code>results/</code></li>
+</ul>
+<h3 id="reproduction-commands">Reproduction Commands<a class="headerlink" href="#reproduction-commands" title="Permanent link">&para;</a></h3>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c"># Vision-only</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">evaluate_llms</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-dataset</span> <span class="n">data2</span><span class="p">/</span><span class="n">samples</span><span class="p">.</span><span class="n">jsonl</span> <span class="p">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="p">-</span><span class="n">-models</span> <span class="n">google</span><span class="p">/</span><span class="n">gemini</span><span class="p">-</span><span class="n">3-flash-preview</span> <span class="p">-</span><span class="n">-tools</span> <span class="n">no</span> <span class="p">-</span><span class="n">-limit</span> <span class="n">500</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c"># Tool-augmented</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">evaluate_llms</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-dataset</span> <span class="n">data2</span><span class="p">/</span><span class="n">samples</span><span class="p">.</span><span class="n">jsonl</span> <span class="p">\</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="p">-</span><span class="n">-models</span> <span class="n">google</span><span class="p">/</span><span class="n">gemini</span><span class="p">-</span><span class="n">3-flash-preview</span> <span class="p">-</span><span class="n">-tools</span> <span class="n">yes</span> <span class="p">-</span><span class="n">-limit</span> <span class="n">500</span>
+</span></code></pre></div>
+<h3 id="dataset-provenance">Dataset Provenance<a class="headerlink" href="#dataset-provenance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Digest (n=500)</strong>: <code>f987165daff0de70</code></li>
+<li><strong>Sources</strong>: GenImage, DRAGON, Nano-banana-150k</li>
+</ul>
+<hr />
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../evaluation/results/">Evaluation Results</a> — Complete benchmark tables</li>
+<li><a href="../../evaluation/methodology/">Methodology</a> — Evaluation framework</li>
+<li><a href="../design-decisions/">Design Decisions</a> — Architectural choices</li>
+<li><a href="../limitations/">Limitations</a> — Known system limitations</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

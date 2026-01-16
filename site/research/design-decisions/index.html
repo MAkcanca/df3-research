@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../reproducibility/">
+        <link rel="prev" href="../findings/">
       
       
-        <link rel="next" href="../../getting-started/quickstart/">
+        <link rel="next" href="../limitations/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Delivery Checklist - DF3 - Forensic Image Analysis</title>
+        <title>Design Decisions - DF3 - Forensic Image Analysis</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#delivery-checklist" class="md-skip">
+        <a href="#design-decisions" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Delivery Checklist
+              Design Decisions
             
           </span>
         </div>
@@ -346,10 +346,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../design-decisions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Decisions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -365,6 +392,597 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-1-agent-framework-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 1: Agent Framework (LangGraph)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 1: Agent Framework (LangGraph)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-2-structured-output-baml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 2: Structured Output (BAML)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 2: Structured Output (BAML)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-3-vision-model-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 3: Vision Model Separation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 3: Vision Model Separation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-4-tool-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 4: Tool Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 4: Tool Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-cfa-was-disabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why CFA Was Disabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-5-prompt-engineering-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 5: Prompt Engineering Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 5: Prompt Engineering Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evolution-of-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evolution of Prompts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-didnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Didn't Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Worked
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-6-caching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 6: Caching Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 6: Caching Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-7-three-way-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 7: Three-Way Classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 7: Three-Way Classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-8-evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 8: Evaluation Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 8: Evaluation Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-made_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choice Made
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-not-just-accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Not Just Accuracy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics-selected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics Selected
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approaches-tried-and-abandoned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approaches Tried and Abandoned
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Approaches Tried and Abandoned">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach-1-confidence-based-tool-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 1: Confidence-Based Tool Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-2-tool-output-summarization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 2: Tool Output Summarization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-3-ensemble-multiple-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 3: Ensemble Multiple Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-4-fine-grained-verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 4: Fine-Grained Verdict
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendations-for-future-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendations for Future Development
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -430,37 +1048,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Delivery Checklist
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../delivery-checklist/" class="md-nav__link">
         
   
   
@@ -476,487 +1067,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pre-delivery-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-Delivery Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Pre-Delivery Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#code-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code &amp; Environment
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-datasets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data &amp; Datasets
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#evaluation-results" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evaluation Results
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-review-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code Review Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Code Review Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#quality" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quality
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#functionality" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Functionality
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Documentation Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#required-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Required Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#technical-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Technical Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dataset-delivery-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dataset Delivery Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Dataset Delivery Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#if-including-full-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If Including Full Dataset
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#if-manifest-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If Manifest-Only
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dataset-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dataset Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evaluation-delivery-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evaluation Delivery Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Evaluation Delivery Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#results-artifacts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Results Artifacts
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#final-quality-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Final Quality Checks
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Final Quality Checks">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fresh-install-test" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fresh Install Test
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation-accuracy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation Accuracy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#completeness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Completeness
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#packaging-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Packaging Options
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Packaging Options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#option-a-github-repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option A: GitHub Repository
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#option-b-zip-archive" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option B: Zip Archive
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#option-c-docker-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option C: Docker Container
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#handoff-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Handoff Documentation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Handoff Documentation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cover-letter-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cover Letter Contents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#training-materials-if-needed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Training Materials (if needed)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#post-delivery" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Post-Delivery
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Post-Delivery">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#support-plan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support Plan
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-control" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Version Control
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-pre-delivery-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Pre-Delivery Commands
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2345,22 +2455,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pre-delivery-checklist" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pre-Delivery Checklist
+        Overview
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Pre-Delivery Checklist">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-1-agent-framework-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision 1: Agent Framework (LangGraph)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision 1: Agent Framework (LangGraph)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#code-environment" class="md-nav__link">
+  <a href="#choice-made" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Code &amp; Environment
+        Choice Made
       
     </span>
   </a>
@@ -2368,10 +2489,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
+  <a href="#alternatives-considered" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation
+        Alternatives Considered
       
     </span>
   </a>
@@ -2379,10 +2500,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#data-datasets" class="md-nav__link">
+  <a href="#rationale" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data &amp; Datasets
+        Rationale
       
     </span>
   </a>
@@ -2390,10 +2511,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluation-results" class="md-nav__link">
+  <a href="#lessons-learned" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Evaluation Results
+        Lessons Learned
       
     </span>
   </a>
@@ -2406,22 +2527,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-review-checklist" class="md-nav__link">
+  <a href="#decision-2-structured-output-baml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Code Review Checklist
+        Decision 2: Structured Output (BAML)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Code Review Checklist">
+    <nav class="md-nav" aria-label="Decision 2: Structured Output (BAML)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
+  <a href="#choice-made_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security
+        Choice Made
       
     </span>
   </a>
@@ -2429,10 +2550,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#quality" class="md-nav__link">
+  <a href="#alternatives-considered_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quality
+        Alternatives Considered
       
     </span>
   </a>
@@ -2440,10 +2561,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#functionality" class="md-nav__link">
+  <a href="#rationale_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Functionality
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
       
     </span>
   </a>
@@ -2456,22 +2599,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#documentation-checklist" class="md-nav__link">
+  <a href="#decision-3-vision-model-separation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Checklist
+        Decision 3: Vision Model Separation
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Documentation Checklist">
+    <nav class="md-nav" aria-label="Decision 3: Vision Model Separation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#required-documents" class="md-nav__link">
+  <a href="#choice-made_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required Documents
+        Choice Made
       
     </span>
   </a>
@@ -2479,10 +2622,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#user-documentation" class="md-nav__link">
+  <a href="#alternatives-considered_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        User Documentation
+        Alternatives Considered
       
     </span>
   </a>
@@ -2490,10 +2633,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#technical-documentation" class="md-nav__link">
+  <a href="#rationale_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Technical Documentation
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
       
     </span>
   </a>
@@ -2506,22 +2660,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dataset-delivery-checklist" class="md-nav__link">
+  <a href="#decision-4-tool-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dataset Delivery Checklist
+        Decision 4: Tool Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Dataset Delivery Checklist">
+    <nav class="md-nav" aria-label="Decision 4: Tool Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#if-including-full-dataset" class="md-nav__link">
+  <a href="#choice-made_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If Including Full Dataset
+        Choice Made
       
     </span>
   </a>
@@ -2529,10 +2683,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#if-manifest-only" class="md-nav__link">
+  <a href="#tool-selection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If Manifest-Only
+        Tool Selection
       
     </span>
   </a>
@@ -2540,10 +2694,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dataset-documentation" class="md-nav__link">
+  <a href="#why-cfa-was-disabled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dataset Documentation
+        Why CFA Was Disabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lessons-learned_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons Learned
       
     </span>
   </a>
@@ -2556,22 +2721,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#evaluation-delivery-checklist" class="md-nav__link">
+  <a href="#decision-5-prompt-engineering-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Evaluation Delivery Checklist
+        Decision 5: Prompt Engineering Strategy
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Evaluation Delivery Checklist">
+    <nav class="md-nav" aria-label="Decision 5: Prompt Engineering Strategy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#results-artifacts" class="md-nav__link">
+  <a href="#choice-made_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Results Artifacts
+        Choice Made
       
     </span>
   </a>
@@ -2579,10 +2744,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
+  <a href="#evolution-of-prompts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metadata
+        Evolution of Prompts
       
     </span>
   </a>
@@ -2590,10 +2755,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#what-didnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation
+        What Didn't Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Worked
       
     </span>
   </a>
@@ -2606,22 +2782,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#final-quality-checks" class="md-nav__link">
+  <a href="#decision-6-caching-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Final Quality Checks
+        Decision 6: Caching Strategy
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Final Quality Checks">
+    <nav class="md-nav" aria-label="Decision 6: Caching Strategy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fresh-install-test" class="md-nav__link">
+  <a href="#choice-made_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fresh Install Test
+        Choice Made
       
     </span>
   </a>
@@ -2629,10 +2805,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#documentation-accuracy" class="md-nav__link">
+  <a href="#rationale_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Accuracy
+        Rationale
       
     </span>
   </a>
@@ -2640,10 +2816,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#completeness" class="md-nav__link">
+  <a href="#trade-offs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Completeness
+        Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Detail
       
     </span>
   </a>
@@ -2656,22 +2843,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#packaging-options" class="md-nav__link">
+  <a href="#decision-7-three-way-classification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Packaging Options
+        Decision 7: Three-Way Classification
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Packaging Options">
+    <nav class="md-nav" aria-label="Decision 7: Three-Way Classification">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-a-github-repository" class="md-nav__link">
+  <a href="#choice-made_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option A: GitHub Repository
+        Choice Made
       
     </span>
   </a>
@@ -2679,10 +2866,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-b-zip-archive" class="md-nav__link">
+  <a href="#rationale_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option B: Zip Archive
+        Rationale
       
     </span>
   </a>
@@ -2690,10 +2877,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-c-docker-container" class="md-nav__link">
+  <a href="#lessons-learned_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option C: Docker Container
+        Lessons Learned
       
     </span>
   </a>
@@ -2706,22 +2893,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#handoff-documentation" class="md-nav__link">
+  <a href="#decision-8-evaluation-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Handoff Documentation
+        Decision 8: Evaluation Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Handoff Documentation">
+    <nav class="md-nav" aria-label="Decision 8: Evaluation Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cover-letter-contents" class="md-nav__link">
+  <a href="#choice-made_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cover Letter Contents
+        Choice Made
       
     </span>
   </a>
@@ -2729,10 +2916,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#training-materials-if-needed" class="md-nav__link">
+  <a href="#why-not-just-accuracy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Training Materials (if needed)
+        Why Not Just Accuracy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics-selected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics Selected
       
     </span>
   </a>
@@ -2745,22 +2943,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#post-delivery" class="md-nav__link">
+  <a href="#approaches-tried-and-abandoned" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Delivery
+        Approaches Tried and Abandoned
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Post-Delivery">
+    <nav class="md-nav" aria-label="Approaches Tried and Abandoned">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#support-plan" class="md-nav__link">
+  <a href="#approach-1-confidence-based-tool-selection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Support Plan
+        Approach 1: Confidence-Based Tool Selection
       
     </span>
   </a>
@@ -2768,10 +2966,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#version-control" class="md-nav__link">
+  <a href="#approach-2-tool-output-summarization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Version Control
+        Approach 2: Tool Output Summarization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-3-ensemble-multiple-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 3: Ensemble Multiple Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-4-fine-grained-verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach 4: Fine-Grained Verdict
       
     </span>
   </a>
@@ -2784,10 +3004,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-pre-delivery-commands" class="md-nav__link">
+  <a href="#recommendations-for-future-development" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Pre-Delivery Commands
+        Recommendations for Future Development
       
     </span>
   </a>
@@ -2822,354 +3042,477 @@
 
 
 
-<h1 id="delivery-checklist">Delivery Checklist<a class="headerlink" href="#delivery-checklist" title="Permanent link">&para;</a></h1>
-<p>Checklist for preparing DF3 deliverables for external labs or publication.</p>
+<h1 id="design-decisions">Design Decisions<a class="headerlink" href="#design-decisions" title="Permanent link">&para;</a></h1>
+<p>This document captures the key architectural and design decisions made during DF3 development, including alternatives considered, rationale for choices made, and lessons learned from approaches that were tried and abandoned.</p>
 <hr />
-<h2 id="pre-delivery-checklist">Pre-Delivery Checklist<a class="headerlink" href="#pre-delivery-checklist" title="Permanent link">&para;</a></h2>
-<h3 id="code-environment">Code &amp; Environment<a class="headerlink" href="#code-environment" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Repository clean</strong> — No debug code, commented blocks, or sensitive data</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Dependencies documented</strong> — <code>requirements.txt</code> with pinned versions</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Installation tested</strong> — Fresh environment setup verified</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>README updated</strong> — Current instructions, no stale info</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>License included</strong> — Appropriate license file</li>
-</ul>
-<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>User guide complete</strong> — All workflows documented</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>API reference current</strong> — Matches actual code</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Examples working</strong> — All code examples tested</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Limitations documented</strong> — Honest capability assessment</li>
-</ul>
-<h3 id="data-datasets">Data &amp; Datasets<a class="headerlink" href="#data-datasets" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Dataset provenance</strong> — Sources and licenses documented</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Sample data included</strong> — Test images for verification</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Manifests provided</strong> — If full data can't be shared</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Privacy checked</strong> — No PII or sensitive content</li>
-</ul>
-<h3 id="evaluation-results">Evaluation Results<a class="headerlink" href="#evaluation-results" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Results reproducible</strong> — Re-run and verify</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Methodology documented</strong> — All parameters recorded</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Metrics explained</strong> — Definitions and interpretations</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Confidence intervals</strong> — Uncertainty quantified</li>
-</ul>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>DF3 evolved through several iterations. Understanding <em>why</em> the system is designed the way it is helps future researchers build on this work without repeating unsuccessful approaches.</p>
 <hr />
-<h2 id="code-review-checklist">Code Review Checklist<a class="headerlink" href="#code-review-checklist" title="Permanent link">&para;</a></h2>
-<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No hardcoded credentials</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> API keys loaded from environment</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No sensitive data in logs</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Input validation present</li>
-</ul>
-<h3 id="quality">Quality<a class="headerlink" href="#quality" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No TODO comments unaddressed</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No commented-out code blocks</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Consistent code style</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Meaningful variable names</li>
-</ul>
-<h3 id="functionality">Functionality<a class="headerlink" href="#functionality" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All scripts executable</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Error handling present</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Edge cases considered</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Resource cleanup (files, connections)</li>
-</ul>
-<hr />
-<h2 id="documentation-checklist">Documentation Checklist<a class="headerlink" href="#documentation-checklist" title="Permanent link">&para;</a></h2>
-<h3 id="required-documents">Required Documents<a class="headerlink" href="#required-documents" title="Permanent link">&para;</a></h3>
+<h2 id="decision-1-agent-framework-langgraph">Decision 1: Agent Framework (LangGraph)<a class="headerlink" href="#decision-1-agent-framework-langgraph" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made">Choice Made<a class="headerlink" href="#choice-made" title="Permanent link">&para;</a></h3>
+<p><strong>LangGraph</strong> with the ReAct agent pattern for tool orchestration.</p>
+<h3 id="alternatives-considered">Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Document</th>
-<th>Purpose</th>
-<th>Status</th>
+<th>Option</th>
+<th>Pros</th>
+<th>Cons</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>README.md</td>
-<td>Quick start</td>
-<td>[ ]</td>
+<td><strong>LangGraph ReAct</strong></td>
+<td>Built-in tool calling, state management, checkpointing</td>
+<td>Heavier dependency, learning curve</td>
 </tr>
 <tr>
-<td>INSTALL.md</td>
-<td>Detailed setup</td>
-<td>[ ]</td>
+<td><strong>LangChain AgentExecutor</strong></td>
+<td>Simpler API, well-documented</td>
+<td>Less flexible, deprecated patterns</td>
 </tr>
 <tr>
-<td>LICENSE</td>
-<td>Legal terms</td>
-<td>[ ]</td>
+<td><strong>Custom loop</strong></td>
+<td>Full control, minimal dependencies</td>
+<td>More code to maintain, reinventing wheels</td>
 </tr>
 <tr>
-<td>CHANGELOG.md</td>
-<td>Version history</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>CONTRIBUTING.md</td>
-<td>Contribution guide</td>
-<td>[ ]</td>
+<td><strong>Autogen/CrewAI</strong></td>
+<td>Multi-agent support</td>
+<td>Overkill for single-agent task</td>
 </tr>
 </tbody>
 </table>
-<h3 id="user-documentation">User Documentation<a class="headerlink" href="#user-documentation" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Content</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Quick Start</td>
-<td>5-minute setup</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Installation</td>
-<td>Full environment setup</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>User Guide</td>
-<td>Workflow tutorials</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>API Reference</td>
-<td>Function documentation</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Troubleshooting</td>
-<td>Common issues</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>FAQ</td>
-<td>Frequent questions</td>
-<td>[ ]</td>
-</tr>
-</tbody>
-</table>
-<h3 id="technical-documentation">Technical Documentation<a class="headerlink" href="#technical-documentation" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Content</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Architecture</td>
-<td>System design</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Data Flow</td>
-<td>Processing pipeline</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Tool Reference</td>
-<td>Forensic tool details</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Evaluation</td>
-<td>Methodology &amp; metrics</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Reproducibility</td>
-<td>Reproduction guide</td>
-<td>[ ]</td>
-</tr>
-<tr>
-<td>Limitations</td>
-<td>Honest assessment</td>
-<td>[ ]</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="dataset-delivery-checklist">Dataset Delivery Checklist<a class="headerlink" href="#dataset-delivery-checklist" title="Permanent link">&para;</a></h2>
-<h3 id="if-including-full-dataset">If Including Full Dataset<a class="headerlink" href="#if-including-full-dataset" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> License permits redistribution</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sources credited properly</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No copyright violations</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Privacy-safe content</li>
-</ul>
-<h3 id="if-manifest-only">If Manifest-Only<a class="headerlink" href="#if-manifest-only" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Retrieval instructions provided</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SHA256 hashes for verification</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Source URLs documented</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sampling methodology described</li>
-</ul>
-<h3 id="dataset-documentation">Dataset Documentation<a class="headerlink" href="#dataset-documentation" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sample counts verified</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Class balance documented</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Source datasets listed</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Processing steps described</li>
-</ul>
-<hr />
-<h2 id="evaluation-delivery-checklist">Evaluation Delivery Checklist<a class="headerlink" href="#evaluation-delivery-checklist" title="Permanent link">&para;</a></h2>
-<h3 id="results-artifacts">Results Artifacts<a class="headerlink" href="#results-artifacts" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Raw results file (<code>.jsonl</code>)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Aggregated metrics (<code>.json</code>)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Summary tables (<code>.md</code>)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Configuration used (<code>.json</code>)</li>
-</ul>
-<h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Model versions recorded</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dataset digest included</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Timestamp documented</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Git commit recorded</li>
-</ul>
-<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Metrics recomputable from raw results</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sample spot-checked manually</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Edge cases reviewed</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Error cases analyzed</li>
-</ul>
-<hr />
-<h2 id="final-quality-checks">Final Quality Checks<a class="headerlink" href="#final-quality-checks" title="Permanent link">&para;</a></h2>
-<h3 id="fresh-install-test">Fresh Install Test<a class="headerlink" href="#fresh-install-test" title="Permanent link">&para;</a></h3>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c"># Clone fresh copy</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">git</span> <span class="n">clone</span> <span class="nv">$REPO_URL</span> <span class="nb">test-install</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd test-install</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c"># Create environment</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">venv</span> <span class="n">venv</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">.\</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c"># Install</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c"># Run basic test</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">analyze_image</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-image</span> <span class="n">data</span><span class="p">/</span><span class="n">sample</span><span class="p">.</span><span class="n">jpg</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c"># Run evaluation sample</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">evaluate_llms</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-dataset</span> <span class="n">data</span><span class="p">/</span><span class="n">sample</span><span class="p">.</span><span class="n">jsonl</span> <span class="p">-</span><span class="n">-limit</span> <span class="n">10</span>
-</span></code></pre></div>
-<h3 id="documentation-accuracy">Documentation Accuracy<a class="headerlink" href="#documentation-accuracy" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All commands execute successfully</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All file paths exist</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All links resolve</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Screenshots current</li>
-</ul>
-<h3 id="completeness">Completeness<a class="headerlink" href="#completeness" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All listed features work</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All documented APIs functional</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All examples produce expected output</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All configuration options work</li>
-</ul>
-<hr />
-<h2 id="packaging-options">Packaging Options<a class="headerlink" href="#packaging-options" title="Permanent link">&para;</a></h2>
-<h3 id="option-a-github-repository">Option A: GitHub Repository<a class="headerlink" href="#option-a-github-repository" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Deliverable: Repository URL + access
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Contents:
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  - Full source code
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  - Documentation in markdown_docs/
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  - Sample data
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  - Results artifacts
-</span></code></pre></div>
-<h3 id="option-b-zip-archive">Option B: Zip Archive<a class="headerlink" href="#option-b-zip-archive" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>df3-v1.0.0.zip
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── src/
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── scripts/
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>├── markdown_docs/
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>├── data/sample/
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├── results/
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├── requirements.txt
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>├── README.md
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>├── LICENSE
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>└── INSTALL.md
-</span></code></pre></div>
-<h3 id="option-c-docker-container">Option C: Docker Container<a class="headerlink" href="#option-c-docker-container" title="Permanent link">&para;</a></h3>
-<div class="language-dockerfile highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c"># Dockerfile for complete environment</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>/app
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripts/analyze_image.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--help&quot;</span><span class="p">]</span>
-</span></code></pre></div>
-<hr />
-<h2 id="handoff-documentation">Handoff Documentation<a class="headerlink" href="#handoff-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="cover-letter-contents">Cover Letter Contents<a class="headerlink" href="#cover-letter-contents" title="Permanent link">&para;</a></h3>
+<h3 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h3>
+<p>LangGraph was selected because:</p>
 <ol>
-<li><strong>Overview</strong> — What DF3 is and does</li>
-<li><strong>Key Capabilities</strong> — Main features</li>
-<li><strong>Setup Instructions</strong> — Quick start reference</li>
-<li><strong>Known Limitations</strong> — Honest assessment</li>
-<li><strong>Support Contact</strong> — How to get help</li>
+<li><strong>Native tool calling</strong>: Handles the ReAct loop (Reason → Act → Observe) cleanly</li>
+<li><strong>State management</strong>: Built-in checkpointing via MemorySaver</li>
+<li><strong>Iteration control</strong>: <code>recursion_limit</code> parameter prevents infinite loops</li>
+<li><strong>Future flexibility</strong>: Could extend to multi-agent workflows if needed</li>
 </ol>
-<h3 id="training-materials-if-needed">Training Materials (if needed)<a class="headerlink" href="#training-materials-if-needed" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Video walkthrough</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Live demo session</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Q&amp;A documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Office hours schedule</li>
-</ul>
+<h3 id="lessons-learned">Lessons Learned<a class="headerlink" href="#lessons-learned" title="Permanent link">&para;</a></h3>
+<p>The ReAct pattern works well for tool orchestration but introduces failure modes:
+- Tool selection errors accumulate over iterations
+- Long reasoning chains can drift from the task
+- Agent may call unnecessary tools, adding latency</p>
+<p><strong>Recommendation</strong>: For simpler tasks, a single-shot approach may be preferable. Use agents only when dynamic tool selection is genuinely needed.</p>
 <hr />
-<h2 id="post-delivery">Post-Delivery<a class="headerlink" href="#post-delivery" title="Permanent link">&para;</a></h2>
-<h3 id="support-plan">Support Plan<a class="headerlink" href="#support-plan" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Issue tracking set up</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Response time defined</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Escalation path documented</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Maintenance schedule planned</li>
-</ul>
-<h3 id="version-control">Version Control<a class="headerlink" href="#version-control" title="Permanent link">&para;</a></h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Release tagged</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Changelog updated</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Version number bumped</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dependencies frozen</li>
-</ul>
-<hr />
-<h2 id="quick-pre-delivery-commands">Quick Pre-Delivery Commands<a class="headerlink" href="#quick-pre-delivery-commands" title="Permanent link">&para;</a></h2>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c"># Check for secrets</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s2">&quot;sk-|api[_-]key|password&quot;</span> <span class="n">-Path</span> <span class="n">src</span><span class="p">/**/*.</span><span class="n">py</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c"># Check for TODOs</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s2">&quot;TODO|FIXME|XXX&quot;</span> <span class="n">-Path</span> <span class="n">src</span><span class="p">/**/*.</span><span class="n">py</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c"># Verify requirements</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">pip</span> <span class="n">check</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c"># Run tests</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">pytest</span> <span class="n">tests</span><span class="p">/</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c"># Build docs</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">mkdocs</span> <span class="n">build</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c"># Check for large files</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nb">Get-ChildItem</span> <span class="n">-Recurse</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Length</span> <span class="o">-gt</span> <span class="n">10MB</span><span class="p">}</span>
+<h2 id="decision-2-structured-output-baml">Decision 2: Structured Output (BAML)<a class="headerlink" href="#decision-2-structured-output-baml" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_1">Choice Made<a class="headerlink" href="#choice-made_1" title="Permanent link">&para;</a></h3>
+<p><strong>BAML</strong> (Boundary AI Markup Language) for structured output extraction, using a <strong>two-step approach</strong>:
+1. Free-form reasoning (no structure constraints)
+2. Separate structuring call to extract JSON</p>
+<h3 id="alternatives-considered_1">Alternatives Considered<a class="headerlink" href="#alternatives-considered_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BAML two-step</strong></td>
+<td>Preserves reasoning quality, type-safe outputs</td>
+<td>Two LLM calls, added latency</td>
+</tr>
+<tr>
+<td><strong>OpenAI JSON mode</strong></td>
+<td>Single call, native support</td>
+<td>Reasoning degradation when constrained</td>
+</tr>
+<tr>
+<td><strong>Pydantic + instructor</strong></td>
+<td>Type-safe, popular</td>
+<td>Still constrains during generation</td>
+</tr>
+<tr>
+<td><strong>Regex extraction</strong></td>
+<td>No extra LLM call</td>
+<td>Fragile, fails on format variations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rationale_1">Rationale<a class="headerlink" href="#rationale_1" title="Permanent link">&para;</a></h3>
+<p>Research shows that requiring structured output <em>during</em> reasoning can degrade LLM performance ("reasoning degradation"). By separating reasoning from structuring:</p>
+<ol>
+<li>The reasoning phase uses full model capabilities</li>
+<li>The structuring phase is a simpler extraction task</li>
+<li>Both outputs are available (raw text + structured)</li>
+</ol>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Step 1: Free reasoning</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">vision_output</span> <span class="o">=</span> <span class="k">await</span> <span class="n">AnalyzeImageVisionOnly</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>  <span class="c1"># Returns markdown</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Step 2: Structure extraction</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">structured</span> <span class="o">=</span> <span class="k">await</span> <span class="n">StructureForensicAnalysis</span><span class="p">(</span><span class="n">vision_output</span><span class="p">)</span>  <span class="c1"># Returns typed object</span>
 </span></code></pre></div>
+<h3 id="lessons-learned_1">Lessons Learned<a class="headerlink" href="#lessons-learned_1" title="Permanent link">&para;</a></h3>
+<p>The two-step approach works well:
+- Reasoning quality is preserved
+- Structuring rarely fails (it's just extraction)
+- Cost is acceptable (structuring can use cheaper model)</p>
+<p><strong>Recommendation</strong>: Use this pattern for any task where both reasoning quality and structured output matter.</p>
+<hr />
+<h2 id="decision-3-vision-model-separation">Decision 3: Vision Model Separation<a class="headerlink" href="#decision-3-vision-model-separation" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_2">Choice Made<a class="headerlink" href="#choice-made_2" title="Permanent link">&para;</a></h3>
+<p>Allow <strong>separate models</strong> for vision, agent reasoning, and structuring:
+- <code>vision_model</code>: Initial image analysis
+- <code>llm_model</code>: Agent reasoning and tool orchestration
+- <code>structuring_model</code>: BAML output extraction</p>
+<h3 id="alternatives-considered_2">Alternatives Considered<a class="headerlink" href="#alternatives-considered_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Single model for all</strong></td>
+<td>Simpler configuration</td>
+<td>Forces trade-offs (cost vs. capability)</td>
+</tr>
+<tr>
+<td><strong>Separate models</strong></td>
+<td>Optimize each stage independently</td>
+<td>More complex configuration</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rationale_2">Rationale<a class="headerlink" href="#rationale_2" title="Permanent link">&para;</a></h3>
+<p>Different stages have different requirements:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Requirement</th>
+<th>Optimal Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vision</td>
+<td>Strong visual understanding</td>
+<td>Gemini, GPT-4o, Claude</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>Reasoning, tool use</td>
+<td>Can be cheaper</td>
+</tr>
+<tr>
+<td>Structuring</td>
+<td>JSON extraction</td>
+<td>Can be cheapest</td>
+</tr>
+</tbody>
+</table>
+<p>This allows cost optimization: use a capable vision model, then cheaper models for downstream tasks.</p>
+<h3 id="lessons-learned_2">Lessons Learned<a class="headerlink" href="#lessons-learned_2" title="Permanent link">&para;</a></h3>
+<p>In practice, <strong>vision model choice dominates performance</strong>:
+- Gemini 3 Flash as vision model: 92.8% accuracy
+- GPT-5.2 as vision model: 7.4% accuracy (with 92% abstention)</p>
+<p>The agent and structuring models matter less. Future work should focus on vision model selection.</p>
+<hr />
+<h2 id="decision-4-tool-architecture">Decision 4: Tool Architecture<a class="headerlink" href="#decision-4-tool-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_3">Choice Made<a class="headerlink" href="#choice-made_3" title="Permanent link">&para;</a></h3>
+<p><strong>Modular tool design</strong> with each tool in a separate file, registered via <code>@tool</code> decorator.</p>
+<h3 id="tool-selection">Tool Selection<a class="headerlink" href="#tool-selection" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Included</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TruFor</td>
+<td>Yes</td>
+<td>State-of-the-art manipulation detection</td>
+</tr>
+<tr>
+<td>ELA</td>
+<td>Yes</td>
+<td>Classic forensic technique, interpretable</td>
+</tr>
+<tr>
+<td>JPEG analysis</td>
+<td>Yes</td>
+<td>Compression artifact detection</td>
+</tr>
+<tr>
+<td>Frequency analysis</td>
+<td>Yes</td>
+<td>DCT/FFT for pattern detection</td>
+</tr>
+<tr>
+<td>Residual extraction</td>
+<td>Yes</td>
+<td>DRUNet noise patterns</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Yes</td>
+<td>EXIF/C2PA, no ML required</td>
+</tr>
+<tr>
+<td>Code execution</td>
+<td>Yes</td>
+<td>Flexibility for custom analysis</td>
+</tr>
+<tr>
+<td>CFA</td>
+<td>Disabled</td>
+<td>Unreliable results, high false positive rate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-cfa-was-disabled">Why CFA Was Disabled<a class="headerlink" href="#why-cfa-was-disabled" title="Permanent link">&para;</a></h3>
+<p>Color Filter Array (CFA) analysis detects inconsistencies in Bayer pattern interpolation. In testing:
+- High false positive rate on legitimate images
+- Inconsistent results across image formats
+- Limited discriminative power for AI-generated images</p>
+<p>Rather than produce misleading evidence, we disabled it.</p>
+<h3 id="lessons-learned_3">Lessons Learned<a class="headerlink" href="#lessons-learned_3" title="Permanent link">&para;</a></h3>
+<p><strong>Tool selection should match the task</strong>. Our tools were designed for manipulation detection, but our dataset was AI-generated images. This mismatch is a primary cause of the "tools hurt performance" finding.</p>
+<p><strong>Recommendation</strong>: Develop or integrate tools specifically designed for AI-generated detection:
+- GAN fingerprint detectors
+- Diffusion model artifact detectors
+- Semantic consistency analyzers</p>
+<hr />
+<h2 id="decision-5-prompt-engineering-strategy">Decision 5: Prompt Engineering Strategy<a class="headerlink" href="#decision-5-prompt-engineering-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_4">Choice Made<a class="headerlink" href="#choice-made_4" title="Permanent link">&para;</a></h3>
+<p><strong>Explicit prompts</strong> with detailed instructions, including:
+- Task definition
+- Visual inspection guidelines
+- Tool interpretation rules
+- Common pitfall warnings
+- Output format specification</p>
+<h3 id="evolution-of-prompts">Evolution of Prompts<a class="headerlink" href="#evolution-of-prompts" title="Permanent link">&para;</a></h3>
+<p>The prompts evolved significantly:</p>
+<h4 id="version-1-early">Version 1 (Early)<a class="headerlink" href="#version-1-early" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Analyze this image and determine if it is real or fake.
+</span></code></pre></div>
+<p><strong>Problem</strong>: No guidance on what to look for, inconsistent outputs.</p>
+<h4 id="version-2-mid">Version 2 (Mid)<a class="headerlink" href="#version-2-mid" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Look for: anatomical errors, texture anomalies, lighting issues...
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Output: JSON with verdict, confidence, rationale
+</span></code></pre></div>
+<p><strong>Problem</strong>: Models conflated "no manipulation" with "real".</p>
+<h4 id="version-3-final">Version 3 (Final)<a class="headerlink" href="#version-3-final" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>IMPORTANT DISTINCTION:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>- &quot;No evidence of manipulation&quot; is NOT the same as &quot;not synthetic&quot;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>- AI-generated images can score low on manipulation tools
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>When to trust tools vs. visual analysis...
+</span></code></pre></div>
+<p><strong>Key insight</strong>: Explicit warnings about common errors are necessary. LLMs will make logical mistakes (e.g., "TruFor low → image is real") unless explicitly instructed not to.</p>
+<h3 id="what-didnt-work">What Didn't Work<a class="headerlink" href="#what-didnt-work" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Numeric thresholds</strong>: Telling the model "TruFor &gt; 0.8 means fake" led to overreliance on arbitrary cutoffs</li>
+<li><strong>Confidence calibration instructions</strong>: Asking for "calibrated" confidence didn't improve calibration</li>
+<li><strong>Chain-of-thought forcing</strong>: Requiring explicit reasoning steps didn't improve accuracy</li>
+</ol>
+<h3 id="what-worked">What Worked<a class="headerlink" href="#what-worked" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Distinction between manipulation and synthesis</strong>: Explicit, repeated</li>
+<li><strong>SWGDE best practices inclusion</strong>: Added authoritative guidance</li>
+<li><strong>Uncertain as valid output</strong>: Explicitly permitting abstention reduced false confidence</li>
+<li><strong>Concrete visual indicators</strong>: Lists of what to look for (fingers, skin texture, etc.)</li>
+</ol>
+<hr />
+<h2 id="decision-6-caching-strategy">Decision 6: Caching Strategy<a class="headerlink" href="#decision-6-caching-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_5">Choice Made<a class="headerlink" href="#choice-made_5" title="Permanent link">&para;</a></h3>
+<p><strong>Multi-level caching</strong> with separate caches for:
+- Vision outputs (keyed by image hash + model + prompt hash)
+- Tool outputs (keyed by image hash + tool + parameters)
+- Image encoding (LRU cache, 32 images)</p>
+<h3 id="rationale_3">Rationale<a class="headerlink" href="#rationale_3" title="Permanent link">&para;</a></h3>
+<p>Forensic tools are computationally expensive:
+- TruFor: 2-5 seconds per image (GPU)
+- Residual extraction: 1-3 seconds per image
+- Vision LLM call: 3-10 seconds</p>
+<p>For batch evaluation, caching eliminates redundant computation when:
+- Re-running with different agent models (vision cache)
+- Re-running with different configurations (tool cache)
+- Processing the same image multiple times (encoding cache)</p>
+<h3 id="trade-offs">Trade-offs<a class="headerlink" href="#trade-offs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Pro</th>
+<th>Con</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faster iteration</td>
+<td>Cache invalidation complexity</td>
+</tr>
+<tr>
+<td>Reproducible results</td>
+<td>Disk space usage</td>
+</tr>
+<tr>
+<td>Cost savings (fewer LLM calls)</td>
+<td>Stale results if prompts change</td>
+</tr>
+</tbody>
+</table>
+<h3 id="implementation-detail">Implementation Detail<a class="headerlink" href="#implementation-detail" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Cache keyed by content hash, not path</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">image_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">16</span><span class="p">]</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">cache_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tool_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">image_hash</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">param_hash</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="decision-7-three-way-classification">Decision 7: Three-Way Classification<a class="headerlink" href="#decision-7-three-way-classification" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_6">Choice Made<a class="headerlink" href="#choice-made_6" title="Permanent link">&para;</a></h3>
+<p><strong>Three-way output</strong>: <code>real</code>, <code>fake</code>, <code>uncertain</code> (instead of binary classification).</p>
+<h3 id="rationale_4">Rationale<a class="headerlink" href="#rationale_4" title="Permanent link">&para;</a></h3>
+<p>Forensic contexts require appropriate uncertainty:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Binary System</th>
+<th>Three-Way System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clear fake</td>
+<td>fake</td>
+<td>fake</td>
+</tr>
+<tr>
+<td>Clear real</td>
+<td>real</td>
+<td>real</td>
+</tr>
+<tr>
+<td>Ambiguous</td>
+<td><strong>forced guess</strong></td>
+<td>uncertain → human review</td>
+</tr>
+</tbody>
+</table>
+<p>Forced binary classification on ambiguous images produces errors. Allowing "uncertain" enables:
+- Higher accuracy on answered samples
+- Intelligent triage to human reviewers
+- Honest uncertainty communication</p>
+<h3 id="lessons-learned_4">Lessons Learned<a class="headerlink" href="#lessons-learned_4" title="Permanent link">&para;</a></h3>
+<p>Abstention rates vary dramatically by model:
+- Gemini 3 Flash: 1.6% abstention
+- GPT-5.2: 92% abstention</p>
+<p>The three-way system exposed model-specific behaviors that would be hidden in binary classification.</p>
+<hr />
+<h2 id="decision-8-evaluation-metrics">Decision 8: Evaluation Metrics<a class="headerlink" href="#decision-8-evaluation-metrics" title="Permanent link">&para;</a></h2>
+<h3 id="choice-made_7">Choice Made<a class="headerlink" href="#choice-made_7" title="Permanent link">&para;</a></h3>
+<p><strong>Selective classification metrics</strong> that treat abstention appropriately:
+- <code>accuracy</code>: Overall (abstentions count as wrong)
+- <code>accuracy_answered</code>: Among answered samples only
+- <code>coverage</code>: Fraction of samples answered</p>
+<h3 id="why-not-just-accuracy">Why Not Just Accuracy?<a class="headerlink" href="#why-not-just-accuracy" title="Permanent link">&para;</a></h3>
+<p>Binary accuracy conflates two types of errors:
+1. Wrong answers (false positives, false negatives)
+2. Non-answers (abstentions)</p>
+<p>A system that abstains 99% of the time and gets 1% right has 1% accuracy but 100% accuracy-when-answered. Both numbers are meaningful for different decisions.</p>
+<h3 id="metrics-selected">Metrics Selected<a class="headerlink" href="#metrics-selected" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accuracy</td>
+<td>Overall system performance</td>
+</tr>
+<tr>
+<td>accuracy_answered</td>
+<td>Quality when confident</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>System usefulness</td>
+</tr>
+<tr>
+<td>MCC</td>
+<td>Balanced measure for imbalanced data</td>
+</tr>
+<tr>
+<td>fake_slip_rate</td>
+<td>Fakes incorrectly passed</td>
+</tr>
+<tr>
+<td>real_false_flag_rate</td>
+<td>Reals incorrectly flagged</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="approaches-tried-and-abandoned">Approaches Tried and Abandoned<a class="headerlink" href="#approaches-tried-and-abandoned" title="Permanent link">&para;</a></h2>
+<h3 id="approach-1-confidence-based-tool-selection">Approach 1: Confidence-Based Tool Selection<a class="headerlink" href="#approach-1-confidence-based-tool-selection" title="Permanent link">&para;</a></h3>
+<p><strong>Idea</strong>: Only invoke tools when vision confidence is below threshold.</p>
+<p><strong>Implementation</strong>:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">if</span> <span class="n">vision_confidence</span> <span class="o">&lt;</span> <span class="mf">0.7</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">run_tools</span><span class="p">()</span>
+</span></code></pre></div></p>
+<p><strong>Result</strong>: No improvement. Low-confidence cases are often hard cases where tools also struggle.</p>
+<p><strong>Lesson</strong>: Confidence doesn't predict when tools will help.</p>
+<h3 id="approach-2-tool-output-summarization">Approach 2: Tool Output Summarization<a class="headerlink" href="#approach-2-tool-output-summarization" title="Permanent link">&para;</a></h3>
+<p><strong>Idea</strong>: Summarize verbose tool outputs before passing to agent.</p>
+<p><strong>Implementation</strong>: LLM call to condense tool JSON to 2-3 sentences.</p>
+<p><strong>Result</strong>: Added latency, minimal accuracy change. The summarization sometimes lost critical details.</p>
+<p><strong>Lesson</strong>: Let the agent see raw outputs; it can extract what it needs.</p>
+<h3 id="approach-3-ensemble-multiple-models">Approach 3: Ensemble Multiple Models<a class="headerlink" href="#approach-3-ensemble-multiple-models" title="Permanent link">&para;</a></h3>
+<p><strong>Idea</strong>: Run multiple vision models, vote on verdict.</p>
+<p><strong>Implementation</strong>: 3 models, majority vote.</p>
+<p><strong>Result</strong>: Slower, more expensive, marginal accuracy improvement. Best single model was nearly as good.</p>
+<p><strong>Lesson</strong>: Model selection &gt; model ensembling for this task.</p>
+<h3 id="approach-4-fine-grained-verdict">Approach 4: Fine-Grained Verdict<a class="headerlink" href="#approach-4-fine-grained-verdict" title="Permanent link">&para;</a></h3>
+<p><strong>Idea</strong>: Distinguish "AI-generated" from "manipulated" in the verdict.</p>
+<p><strong>Implementation</strong>: Four-way: <code>real</code>, <code>ai_generated</code>, <code>manipulated</code>, <code>uncertain</code>.</p>
+<p><strong>Result</strong>: Models struggled to distinguish generation from manipulation. Added complexity without improving usefulness.</p>
+<p><strong>Lesson</strong>: Keep verdicts simple. The rationale can provide nuance.</p>
+<hr />
+<h2 id="recommendations-for-future-development">Recommendations for Future Development<a class="headerlink" href="#recommendations-for-future-development" title="Permanent link">&para;</a></h2>
+<p>Based on these experiences:</p>
+<ol>
+<li>
+<p><strong>Start simple</strong>: Vision-only is a strong baseline. Add complexity only if it helps.</p>
+</li>
+<li>
+<p><strong>Match tools to task</strong>: If detecting AI-generated images, use AI-generation detectors, not manipulation detectors.</p>
+</li>
+<li>
+<p><strong>Test models individually</strong>: Don't assume results transfer. Evaluate each model on your specific task.</p>
+</li>
+<li>
+<p><strong>Preserve raw outputs</strong>: Cache and log everything. You'll want to reanalyze later.</p>
+</li>
+<li>
+<p><strong>Explicit &gt; implicit</strong>: When LLMs make logical errors, add explicit instructions to prevent them.</p>
+</li>
+<li>
+<p><strong>Measure what matters</strong>: Abstention rates, latency, and cost matter as much as accuracy.</p>
+</li>
+</ol>
 <hr />
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../getting-started/installation/">Installation</a> — Setup guide</li>
-<li><a href="../reproducibility/">Reproducibility</a> — Reproduction requirements</li>
-<li><a href="../limitations/">Limitations</a> — Known issues</li>
+<li><a href="../findings/">Research Findings</a> — Empirical results and analysis</li>
+<li><a href="../../architecture/overview/">Architecture Overview</a> — System design</li>
+<li><a href="../../architecture/agent-pipeline/">Agent Pipeline</a> — Implementation details</li>
 </ul>
 
 
