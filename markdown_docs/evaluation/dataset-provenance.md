@@ -6,21 +6,23 @@ Documentation of the evaluation dataset, including sources and sampling methodol
 
 ## Evaluation Dataset
 
-The evaluation uses a single dataset sampled from multiple sources. Different runs use different sample limits (n=200 or n=500) but draw from the same underlying sample pool.
+DF3 evaluation results are only scientifically comparable when the **dataset fingerprint (digest) matches**. This repo currently contains **multiple benchmark datasets**, including:
+
+- A mixed **synthetic/real** dataset (GenImage/DRAGON/Nano-banana/etc.)
+- A **FaceForensics++ (FF++)** frame dataset derived from real deepfake videos (deepfake-oriented domain)
 
 | Property | Value |
 |----------|-------|
-| **Total Samples** | 500 (247 fake, 253 real) |
-| **ID Digest** | Computed from sorted sample IDs |
-| **Location** | `data2/samples.jsonl` |
-| **Format Mix** | ~80% JPEG, ~20% PNG |
+| **Dataset Fingerprint** | `sha256(sorted(ids))[:16]` |
+| **Compare runs when** | Digests match |
 
 ### Sample Limit Configurations
 
-| Limit | Digest | Usage |
+| Dataset | Limit | Digest | Location | Notes |
 |-------|--------|-------|
-| n=500 | `f987165daff0de70` | Full dataset runs |
-| n=200 | `1f78e35118013ed4` | Subset (first 200 by stable order) |
+| Synthetic mix | n=500 | `f987165daff0de70` | `data2/samples.jsonl` | 500 samples (247 fake, 253 real) |
+| Synthetic mix | n=200 | `1f78e35118013ed4` | `data2/samples.jsonl` | Subset of the same pool (first 200 by stable order) |
+| FaceForensics++ frames | n=500 | `c02071eee1ee544a` | `data/ffpp_500.jsonl` | 500 samples (**444 fake, 56 real**); PNG frames extracted from FF++ videos |
 
 The n=200 runs use the first 200 samples from the same shuffled dataset. Results from different limits should be compared with caution due to sample composition differences.
 
@@ -62,6 +64,25 @@ The n=200 runs use the first 200 samples from the same shuffled dataset. Results
 
 ## Sampling Methodology
 
+### FaceForensics++ (FF++) frames dataset
+
+This dataset is built from FaceForensics++ videos by extracting frames (PNG, no re-encode) and sampling frames into a JSONL manifest.
+
+**Frame extraction**
+
+```powershell
+python scripts/extract_frames_from_videos.py --input_dir FaceForensicsPP --output_dir FaceForensicsPP_frames --frame_positions 0.0 0.5
+```
+
+**Dataset creation**
+
+```powershell
+python scripts/create_faceforensicspp_dataset.py --frames_dir FaceForensicsPP_frames --output data/ffpp_500.jsonl --limit 500 --seed 42
+```
+
+!!! important "Class imbalance and interpretation"
+    The current FF++ sample is **highly imbalanced** (444 fake / 56 real). Prefer reporting **balanced accuracy**, **MCC**, and class-specific rates (e.g., `real_false_flag_rate`) alongside overall accuracy.
+
 ### Sampling Command
 
 ```powershell
@@ -94,6 +115,11 @@ python scripts/sample_dataset.py \
 ```
 
 Both `image`/`label` and `image_path`/`ground_truth` field variants are supported.
+
+### Preventing Label Leakage
+
+!!! important "No Label Information in Paths"
+    File paths and filenames must use neutral identifiers (e.g., `sample-001.jpg`, `image_123.jpg`) and must not contain label-related terms like "fake", "real", "deepfake", "synthetic", "authentic", etc. This prevents LLMs from cheating by reading file metadata instead of analyzing image content.
 
 ---
 

@@ -41,6 +41,35 @@ Create a JSONL file with one record per line:
 
 ---
 
+## FaceForensics++ (FF++) workflow (video → frames → dataset → evaluation)
+
+This repo supports building a **deepfake-oriented** dataset from FaceForensics++ by extracting frames from videos and generating a JSONL manifest compatible with `scripts/evaluate_llms.py`.
+
+### 1) Extract frames from videos
+
+Extract two frames per video at relative positions 0.0 and 0.5 (saved as PNG):
+
+```powershell
+python scripts/extract_frames_from_videos.py --input_dir FaceForensicsPP --output_dir FaceForensicsPP_frames --frame_positions 0.0 0.5
+```
+
+### 2) Create a JSONL dataset
+
+Randomly sample 500 frames into a dataset manifest:
+
+```powershell
+python scripts/create_faceforensicspp_dataset.py --frames_dir FaceForensicsPP_frames --output data/ffpp_500.jsonl --limit 500 --seed 42
+```
+
+### 3) Evaluate models
+
+```powershell
+python scripts/evaluate_llms.py --dataset data/ffpp_500.jsonl --models z-ai/glm-4.6:nitro,moonshotai/kimi-k2-thinking:nitro,xiaomi/mimo-v2-flash:free --tools tools --output results/ffpp_models.jsonl --metrics-output results/ffpp_models.metrics.json
+```
+
+!!! note "Dataset comparability"
+    When comparing runs, use the dataset digest shown in `markdown_docs/evaluation_report.generated.md` (computed from sorted IDs). For the current FF++ sample it is `c02071eee1ee544a`.
+
 ## Basic Usage
 
 ```powershell

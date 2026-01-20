@@ -133,6 +133,7 @@ Truth
 - **Balanced classes** — Equal or known ratio of real/fake
 - **Known ground truth** — Labels are accurate
 - **Representative samples** — Reflect intended use case
+- **No label leakage in paths** — File paths and filenames must not reveal the label (e.g., avoid paths like `fake/image.jpg` or filenames like `deepfake_001.jpg`). Use neutral identifiers to prevent LLMs from cheating by reading file metadata instead of analyzing image content.
 
 ### Standard Evaluation
 

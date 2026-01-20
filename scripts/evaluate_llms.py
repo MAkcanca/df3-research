@@ -31,6 +31,12 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 load_dotenv()
 
+# Completely disable LangSmith tracing
+os.environ["LANGCHAIN_TRACING_V2"] = "false"
+os.environ["LANGCHAIN_ENDPOINT"] = ""
+os.environ["LANGCHAIN_API_KEY"] = ""
+os.environ["LANGSMITH_TRACING"] = "false"
+
 # Suppress BAML verbose logging
 os.environ["BAML_LOG"] = "OFF"
 
@@ -55,7 +61,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.agents import ForensicAgent  # noqa: E402
 from src.tools.forensic.code_execution_tool import clean_artifacts_dir  # noqa: E402
 
-# Configure logfire after imports (works standalone without LangSmith)
+# Configure logfire after imports - completely disabled (no tracing, no sending to LangSmith)
 # Suppress logfire console output during evaluation (the LangGraph trace trees)
 logfire.configure(scrubbing=False, console=False, send_to_logfire=False)
 from src.tools.forensic import prewarm_trufor_model, prewarm_residual_extractor  # noqa: E402

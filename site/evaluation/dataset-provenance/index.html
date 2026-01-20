@@ -1638,6 +1638,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#faceforensics-ff-frames-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FaceForensics++ (FF++) frames dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sampling-command" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1675,6 +1686,17 @@
     <span class="md-ellipsis">
       
         Output Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-label-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preventing Label Leakage
       
     </span>
   </a>
@@ -2124,6 +2146,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#faceforensics-ff-frames-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FaceForensics++ (FF++) frames dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sampling-command" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2161,6 +2194,17 @@
     <span class="md-ellipsis">
       
         Output Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-label-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preventing Label Leakage
       
     </span>
   </a>
@@ -2226,7 +2270,11 @@
 <p>Documentation of the evaluation dataset, including sources and sampling methodology.</p>
 <hr />
 <h2 id="evaluation-dataset">Evaluation Dataset<a class="headerlink" href="#evaluation-dataset" title="Permanent link">&para;</a></h2>
-<p>The evaluation uses a single dataset sampled from multiple sources. Different runs use different sample limits (n=200 or n=500) but draw from the same underlying sample pool.</p>
+<p>DF3 evaluation results are only scientifically comparable when the <strong>dataset fingerprint (digest) matches</strong>. This repo currently contains <strong>multiple benchmark datasets</strong>, including:</p>
+<ul>
+<li>A mixed <strong>synthetic/real</strong> dataset (GenImage/DRAGON/Nano-banana/etc.)</li>
+<li>A <strong>FaceForensics++ (FF++)</strong> frame dataset derived from real deepfake videos (deepfake-oriented domain)</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -2236,45 +2284,21 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Total Samples</strong></td>
-<td>500 (247 fake, 253 real)</td>
+<td><strong>Dataset Fingerprint</strong></td>
+<td><code>sha256(sorted(ids))[:16]</code></td>
 </tr>
 <tr>
-<td><strong>ID Digest</strong></td>
-<td>Computed from sorted sample IDs</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td><code>data2/samples.jsonl</code></td>
-</tr>
-<tr>
-<td><strong>Format Mix</strong></td>
-<td>~80% JPEG, ~20% PNG</td>
+<td><strong>Compare runs when</strong></td>
+<td>Digests match</td>
 </tr>
 </tbody>
 </table>
 <h3 id="sample-limit-configurations">Sample Limit Configurations<a class="headerlink" href="#sample-limit-configurations" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Limit</th>
-<th>Digest</th>
-<th>Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>n=500</td>
-<td><code>f987165daff0de70</code></td>
-<td>Full dataset runs</td>
-</tr>
-<tr>
-<td>n=200</td>
-<td><code>1f78e35118013ed4</code></td>
-<td>Subset (first 200 by stable order)</td>
-</tr>
-</tbody>
-</table>
+<p>| Dataset | Limit | Digest | Location | Notes |
+|-------|--------|-------|
+| Synthetic mix | n=500 | <code>f987165daff0de70</code> | <code>data2/samples.jsonl</code> | 500 samples (247 fake, 253 real) |
+| Synthetic mix | n=200 | <code>1f78e35118013ed4</code> | <code>data2/samples.jsonl</code> | Subset of the same pool (first 200 by stable order) |
+| FaceForensics++ frames | n=500 | <code>c02071eee1ee544a</code> | <code>data/ffpp_500.jsonl</code> | 500 samples (<strong>444 fake, 56 real</strong>); PNG frames extracted from FF++ videos |</p>
 <p>The n=200 runs use the first 200 samples from the same shuffled dataset. Results from different limits should be compared with caution due to sample composition differences.</p>
 <hr />
 <h2 id="source-datasets">Source Datasets<a class="headerlink" href="#source-datasets" title="Permanent link">&para;</a></h2>
@@ -2308,12 +2332,24 @@
 </ul>
 <hr />
 <h2 id="sampling-methodology">Sampling Methodology<a class="headerlink" href="#sampling-methodology" title="Permanent link">&para;</a></h2>
+<h3 id="faceforensics-ff-frames-dataset">FaceForensics++ (FF++) frames dataset<a class="headerlink" href="#faceforensics-ff-frames-dataset" title="Permanent link">&para;</a></h3>
+<p>This dataset is built from FaceForensics++ videos by extracting frames (PNG, no re-encode) and sampling frames into a JSONL manifest.</p>
+<p><strong>Frame extraction</strong></p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">extract_frames_from_videos</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-input_dir</span> <span class="n">FaceForensicsPP</span> <span class="p">-</span><span class="n">-output_dir</span> <span class="n">FaceForensicsPP_frames</span> <span class="p">-</span><span class="n">-frame_positions</span> <span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span>
+</span></code></pre></div>
+<p><strong>Dataset creation</strong></p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">create_faceforensicspp_dataset</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-frames_dir</span> <span class="n">FaceForensicsPP_frames</span> <span class="p">-</span><span class="n">-output</span> <span class="n">data</span><span class="p">/</span><span class="n">ffpp_500</span><span class="p">.</span><span class="n">jsonl</span> <span class="p">-</span><span class="n">-limit</span> <span class="n">500</span> <span class="p">-</span><span class="n">-seed</span> <span class="n">42</span>
+</span></code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Class imbalance and interpretation</p>
+<p>The current FF++ sample is <strong>highly imbalanced</strong> (444 fake / 56 real). Prefer reporting <strong>balanced accuracy</strong>, <strong>MCC</strong>, and class-specific rates (e.g., <code>real_false_flag_rate</code>) alongside overall accuracy.</p>
+</div>
 <h3 id="sampling-command">Sampling Command<a class="headerlink" href="#sampling-command" title="Permanent link">&para;</a></h3>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">sample_dataset</span><span class="p">.</span><span class="n">py</span> <span class="p">\</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="p">-</span><span class="n">-num_samples</span> <span class="n">500</span> <span class="p">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="p">-</span><span class="n">-output_dir</span> <span class="n">samples</span> <span class="p">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="p">-</span><span class="n">-dataset_dir</span> <span class="p">.\</span><span class="n">dataset</span><span class="p">\</span> <span class="p">\</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="p">-</span><span class="n">-seed</span> <span class="n">42</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">sample_dataset</span><span class="p">.</span><span class="n">py</span> <span class="p">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="p">-</span><span class="n">-num_samples</span> <span class="n">500</span> <span class="p">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="p">-</span><span class="n">-output_dir</span> <span class="n">samples</span> <span class="p">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="p">-</span><span class="n">-dataset_dir</span> <span class="p">.\</span><span class="n">dataset</span><span class="p">\</span> <span class="p">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="p">-</span><span class="n">-seed</span> <span class="n">42</span>
 </span></code></pre></div>
 <h3 id="folder-discovery">Folder Discovery<a class="headerlink" href="#folder-discovery" title="Permanent link">&para;</a></h3>
 <table>
@@ -2343,14 +2379,19 @@
 <li>Shuffle entries</li>
 </ol>
 <h3 id="output-format">Output Format<a class="headerlink" href="#output-format" title="Permanent link">&para;</a></h3>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample-001&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample-001.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;real&quot;</span><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample-001&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample-001.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;real&quot;</span><span class="p">}</span>
 </span></code></pre></div>
 <p>Both <code>image</code>/<code>label</code> and <code>image_path</code>/<code>ground_truth</code> field variants are supported.</p>
+<h3 id="preventing-label-leakage">Preventing Label Leakage<a class="headerlink" href="#preventing-label-leakage" title="Permanent link">&para;</a></h3>
+<div class="admonition important">
+<p class="admonition-title">No Label Information in Paths</p>
+<p>File paths and filenames must use neutral identifiers (e.g., <code>sample-001.jpg</code>, <code>image_123.jpg</code>) and must not contain label-related terms like "fake", "real", "deepfake", "synthetic", "authentic", etc. This prevents LLMs from cheating by reading file metadata instead of analyzing image content.</p>
+</div>
 <hr />
 <h2 id="dataset-digest-computation">Dataset Digest Computation<a class="headerlink" href="#dataset-digest-computation" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">sample_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">])</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sample_ids</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">16</span><span class="p">]</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">sample_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">])</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">digest</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sample_ids</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">16</span><span class="p">]</span>
 </span></code></pre></div>
 <p>Compare results only when digests match.</p>
 <hr />

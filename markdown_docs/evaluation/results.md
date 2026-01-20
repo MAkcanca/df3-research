@@ -2,8 +2,6 @@
 
 This page summarizes **all evaluated configurations present in `results/`**, derived from per-sample outputs (`results/*.jsonl`) and computed summaries (`artifacts/eval_summary.json`).
 
-!!! important "Do not cherry-pick"
-    The inventory below is constructed programmatically from the `results/` folder, so it includes *every* run in this repository at the time of generation.
 
 !!! warning "Vision model vs agent model"
     DF3 uses a *vision model* (for the initial vision step) and an *agent model* (for tool orchestration and synthesis). Some runs use a different vision model than the agent model.
@@ -71,8 +69,9 @@ Below is a **single real dataset example** from a tools-enabled run, showing the
 
 ## Key findings (high level)
 
-- **n=500 runs (digest `f987165daff0de70`)**: highest overall triage performance from Gemini 3 Flash Preview in vision-only mode (high accuracy with high coverage).
-- **n=200 runs (digest `1f78e35118013ed4`)**: same dataset with limit=200; evaluated only in tools mode for available runs.
+- **Synthetic mixed dataset (n=500, digest `f987165daff0de70`)**: highest overall triage performance from Gemini 3 Flash Preview in vision-only mode (high accuracy with high coverage).
+- **Synthetic mixed dataset (n=200, digest `1f78e35118013ed4`)**: same dataset pool with limit=200; evaluated only in tools mode for available runs.
+- **FaceForensics++ frames dataset (n=500, digest `c02071eee1ee544a`)**: deepfake-oriented benchmark derived from FF++ video frames (PNG). Results are not directly comparable to the synthetic mix due to domain shift and heavy class imbalance (444 fake / 56 real in this sample).
 - **Abstention dominates some configurations**: for some models, "accuracy when answered" can be high even though overall accuracy is low due to abstaining most of the time.
 - **Tool usage statistics are descriptive**: differences between "tool used" vs "not used" are confounded by difficulty and are **not causal**.
 
@@ -95,6 +94,16 @@ This table is generated from `artifacts/eval_summary.json` (itself computed from
 | anthropic/claude-sonnet-4.5 | anthropic/claude-sonnet-4.5 | tools | B_or_sonnet45.jsonl | 200 | 0.475 | 0.600 | 0.792 | 0.578 | 0.400 | 0.112 | 0.137 | 54.979 | 70.626 |
 | deepseek/deepseek-v3.2 | google/gemini-3-flash-preview | tools | G3vision_agent_deepseekv32.jsonl | 200 | 0.470 | 0.605 | 0.777 | 0.555 | 0.390 | 0.184 | 0.088 | 59.138 | 289.982 |
 | moonshotai/kimi-k2-thinking:nitro | google/gemini-3-flash-preview | tools | G3vision_agent_kimi_k2.jsonl | 200 | 0.295 | 0.355 | 0.831 | 0.652 | 0.630 | 0.051 | 0.069 | 32.391 | 52.559 |
+
+### FaceForensics++ frames: n=500 (digest `c02071eee1ee544a`)
+
+These runs correspond to the `_del` artifacts in `results/` and evaluate three models in **tools mode** on FF++ frames.
+
+| Agent Model | Vision Model | Mode | JSONL | n | Acc | Cov | Acc(ans) | MCC(ans) | Abstain | FakeSlip | RealFalseFlag | Lat_p50(s) | Lat_p95(s) |
+|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| z-ai/glm-4.6:nitro | z-ai/glm-4.6v:nitro | tools | Glm_del.jsonl | 500 | 0.504 | 0.600 | 0.840 | 0.084 | 0.398 | 0.056 | 0.411 | 28.984 | 43.728 |
+| moonshotai/kimi-k2-thinking:nitro | z-ai/glm-4.6v:nitro | tools | Kimi_k2_del.jsonl | 500 | 0.416 | 0.484 | 0.860 | -0.005 | 0.510 | 0.020 | 0.446 | 36.205 | 63.647 |
+| xiaomi/mimo-v2-flash:free | z-ai/glm-4.6v:nitro | tools | Mimo_del.jsonl | 500 | 0.190 | 0.596 | 0.319 | -0.050 | 0.402 | 0.432 | 0.196 | 32.273 | 52.175 |
 
 ### Sample limit: n=500 (digest `f987165daff0de70`)
 

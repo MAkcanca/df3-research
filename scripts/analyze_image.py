@@ -13,6 +13,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+# Completely disable LangSmith tracing
+os.environ["LANGCHAIN_TRACING_V2"] = "false"
+os.environ["LANGCHAIN_ENDPOINT"] = ""
+os.environ["LANGCHAIN_API_KEY"] = ""
+os.environ["LANGSMITH_TRACING"] = "false"
+
 # Suppress OpenTelemetry warning about mixed types in langgraph_path attribute
 # This is a known issue in LangGraph's tracing where node names (str) and step indices (int)
 # are mixed in the path sequence. It's harmless but noisy.
@@ -25,8 +31,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.agents import ForensicAgent  # noqa: E402
 
-# Configure logfire after imports (works standalone without LangSmith)
-logfire.configure(scrubbing=False)
+# Configure logfire after imports - completely disabled (no tracing, no sending to LangSmith)
+logfire.configure(scrubbing=False, console=False, send_to_logfire=False)
 
 def build_headers(referer: Optional[str], title: Optional[str]) -> Optional[Dict[str, str]]:
     """Optional headers for OpenRouter."""

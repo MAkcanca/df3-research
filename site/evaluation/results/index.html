@@ -1648,6 +1648,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#faceforensics-frames-n500-digest-c02071eee1ee544a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FaceForensics++ frames: n=500 (digest c02071eee1ee544a)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sample-limit-n500-digest-f987165daff0de70" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2167,6 +2178,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#faceforensics-frames-n500-digest-c02071eee1ee544a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FaceForensics++ frames: n=500 (digest c02071eee1ee544a)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sample-limit-n500-digest-f987165daff0de70" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2234,10 +2256,6 @@
 
 <h1 id="benchmark-results-complete">Benchmark Results (Complete)<a class="headerlink" href="#benchmark-results-complete" title="Permanent link">&para;</a></h1>
 <p>This page summarizes <strong>all evaluated configurations present in <code>results/</code></strong>, derived from per-sample outputs (<code>results/*.jsonl</code>) and computed summaries (<code>artifacts/eval_summary.json</code>).</p>
-<div class="admonition important">
-<p class="admonition-title">Do not cherry-pick</p>
-<p>The inventory below is constructed programmatically from the <code>results/</code> folder, so it includes <em>every</em> run in this repository at the time of generation.</p>
-</div>
 <div class="admonition warning">
 <p class="admonition-title">Vision model vs agent model</p>
 <p>DF3 uses a <em>vision model</em> (for the initial vision step) and an <em>agent model</em> (for tool orchestration and synthesis). Some runs use a different vision model than the agent model.</p>
@@ -2296,8 +2314,9 @@
 </details>
 <h2 id="key-findings-high-level">Key findings (high level)<a class="headerlink" href="#key-findings-high-level" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>n=500 runs (digest <code>f987165daff0de70</code>)</strong>: highest overall triage performance from Gemini 3 Flash Preview in vision-only mode (high accuracy with high coverage).</li>
-<li><strong>n=200 runs (digest <code>1f78e35118013ed4</code>)</strong>: same dataset with limit=200; evaluated only in tools mode for available runs.</li>
+<li><strong>Synthetic mixed dataset (n=500, digest <code>f987165daff0de70</code>)</strong>: highest overall triage performance from Gemini 3 Flash Preview in vision-only mode (high accuracy with high coverage).</li>
+<li><strong>Synthetic mixed dataset (n=200, digest <code>1f78e35118013ed4</code>)</strong>: same dataset pool with limit=200; evaluated only in tools mode for available runs.</li>
+<li><strong>FaceForensics++ frames dataset (n=500, digest <code>c02071eee1ee544a</code>)</strong>: deepfake-oriented benchmark derived from FF++ video frames (PNG). Results are not directly comparable to the synthetic mix due to domain shift and heavy class imbalance (444 fake / 56 real in this sample).</li>
 <li><strong>Abstention dominates some configurations</strong>: for some models, "accuracy when answered" can be high even though overall accuracy is low due to abstaining most of the time.</li>
 <li><strong>Tool usage statistics are descriptive</strong>: differences between "tool used" vs "not used" are confounded by difficulty and are <strong>not causal</strong>.</li>
 </ul>
@@ -2406,6 +2425,78 @@
 <td style="text-align: right;">0.069</td>
 <td style="text-align: right;">32.391</td>
 <td style="text-align: right;">52.559</td>
+</tr>
+</tbody>
+</table>
+<h3 id="faceforensics-frames-n500-digest-c02071eee1ee544a">FaceForensics++ frames: n=500 (digest <code>c02071eee1ee544a</code>)<a class="headerlink" href="#faceforensics-frames-n500-digest-c02071eee1ee544a" title="Permanent link">&para;</a></h3>
+<p>These runs correspond to the <code>_del</code> artifacts in <code>results/</code> and evaluate three models in <strong>tools mode</strong> on FF++ frames.</p>
+<table>
+<thead>
+<tr>
+<th>Agent Model</th>
+<th>Vision Model</th>
+<th>Mode</th>
+<th>JSONL</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">Acc</th>
+<th style="text-align: right;">Cov</th>
+<th style="text-align: right;">Acc(ans)</th>
+<th style="text-align: right;">MCC(ans)</th>
+<th style="text-align: right;">Abstain</th>
+<th style="text-align: right;">FakeSlip</th>
+<th style="text-align: right;">RealFalseFlag</th>
+<th style="text-align: right;">Lat_p50(s)</th>
+<th style="text-align: right;">Lat_p95(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>z-ai/glm-4.6:nitro</td>
+<td>z-ai/glm-4.6v:nitro</td>
+<td>tools</td>
+<td>Glm_del.jsonl</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.504</td>
+<td style="text-align: right;">0.600</td>
+<td style="text-align: right;">0.840</td>
+<td style="text-align: right;">0.084</td>
+<td style="text-align: right;">0.398</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.411</td>
+<td style="text-align: right;">28.984</td>
+<td style="text-align: right;">43.728</td>
+</tr>
+<tr>
+<td>moonshotai/kimi-k2-thinking:nitro</td>
+<td>z-ai/glm-4.6v:nitro</td>
+<td>tools</td>
+<td>Kimi_k2_del.jsonl</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.416</td>
+<td style="text-align: right;">0.484</td>
+<td style="text-align: right;">0.860</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.510</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.446</td>
+<td style="text-align: right;">36.205</td>
+<td style="text-align: right;">63.647</td>
+</tr>
+<tr>
+<td>xiaomi/mimo-v2-flash:free</td>
+<td>z-ai/glm-4.6v:nitro</td>
+<td>tools</td>
+<td>Mimo_del.jsonl</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.190</td>
+<td style="text-align: right;">0.596</td>
+<td style="text-align: right;">0.319</td>
+<td style="text-align: right;">-0.050</td>
+<td style="text-align: right;">0.402</td>
+<td style="text-align: right;">0.432</td>
+<td style="text-align: right;">0.196</td>
+<td style="text-align: right;">32.273</td>
+<td style="text-align: right;">52.175</td>
 </tr>
 </tbody>
 </table>

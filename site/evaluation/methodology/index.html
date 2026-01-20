@@ -2981,6 +2981,7 @@
 <li><strong>Balanced classes</strong> — Equal or known ratio of real/fake</li>
 <li><strong>Known ground truth</strong> — Labels are accurate</li>
 <li><strong>Representative samples</strong> — Reflect intended use case</li>
+<li><strong>No label leakage in paths</strong> — File paths and filenames must not reveal the label (e.g., avoid paths like <code>fake/image.jpg</code> or filenames like <code>deepfake_001.jpg</code>). Use neutral identifiers to prevent LLMs from cheating by reading file metadata instead of analyzing image content.</li>
 </ul>
 <h3 id="standard-evaluation">Standard Evaluation<a class="headerlink" href="#standard-evaluation" title="Permanent link">&para;</a></h3>
 <div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">evaluate_llms</span><span class="p">.</span><span class="n">py</span> <span class="p">\</span>
