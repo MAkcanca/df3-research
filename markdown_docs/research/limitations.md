@@ -115,6 +115,17 @@ Tool usage correlates with image difficulty. "Tool used" vs. "not used" accuracy
 
 Some latency measurements are confounded by cache state. Vision cache and tool cache can reduce latency to near-zero.
 
+### Label Leakage
+
+LLMs can "cheat" by reading file paths or filenames that reveal ground truth labels instead of analyzing image content. This occurs when:
+
+- File paths contain label terms (e.g., `fake/image.jpg`, `real/photo.png`)
+- Filenames include label hints (e.g., `deepfake_001.jpg`, `synthetic_image.png`, `authentic_photo.jpg`)
+
+**Impact**: Inflated accuracy metrics that don't reflect actual detection capability.
+
+**Mitigation**: Use neutral identifiers in file paths and names (e.g., `sample-001.jpg`, `image_123.jpg`, random hashes). The tools might use the path information, so LLM knows the path or filename most of the time.
+
 ---
 
 ## Confidence Score

@@ -653,6 +653,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#label-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Leakage
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2394,6 +2405,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#label-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label Leakage
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2637,6 +2659,14 @@
 <p>Tool usage correlates with image difficulty. "Tool used" vs. "not used" accuracy deltas are <strong>descriptive, not causal</strong>.</p>
 <h3 id="cache-effects">Cache Effects<a class="headerlink" href="#cache-effects" title="Permanent link">&para;</a></h3>
 <p>Some latency measurements are confounded by cache state. Vision cache and tool cache can reduce latency to near-zero.</p>
+<h3 id="label-leakage">Label Leakage<a class="headerlink" href="#label-leakage" title="Permanent link">&para;</a></h3>
+<p>LLMs can "cheat" by reading file paths or filenames that reveal ground truth labels instead of analyzing image content. This occurs when:</p>
+<ul>
+<li>File paths contain label terms (e.g., <code>fake/image.jpg</code>, <code>real/photo.png</code>)</li>
+<li>Filenames include label hints (e.g., <code>deepfake_001.jpg</code>, <code>synthetic_image.png</code>, <code>authentic_photo.jpg</code>)</li>
+</ul>
+<p><strong>Impact</strong>: Inflated accuracy metrics that don't reflect actual detection capability.</p>
+<p><strong>Mitigation</strong>: Use neutral identifiers in file paths and names (e.g., <code>sample-001.jpg</code>, <code>image_123.jpg</code>, random hashes). The evaluation scripts strip path information, but custom datasets must be carefully prepared.</p>
 <hr />
 <h2 id="confidence-score">Confidence Score<a class="headerlink" href="#confidence-score" title="Permanent link">&para;</a></h2>
 <p>The <code>confidence</code> field is the LLM's self-reported certainty.</p>
