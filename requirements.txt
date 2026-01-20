@@ -45,3 +45,4 @@ ruff>=0.14.0
 tqdm>=4.67.0
 pytest>=8.0.0
 mkdocs
+mkdocs-document-dates

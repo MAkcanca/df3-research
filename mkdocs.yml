@@ -82,6 +82,10 @@ markdown_extensions:
 
 plugins:
   - search
+  - document-dates:
+      date_format: "%B %d, %Y"
+      show_author: false
+      show_created: false
 
 nav:
   - Home: index.md

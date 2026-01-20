@@ -124,7 +124,7 @@ LLMs can "cheat" by reading file paths or filenames that reveal ground truth lab
 
 **Impact**: Inflated accuracy metrics that don't reflect actual detection capability.
 
-**Mitigation**: Use neutral identifiers in file paths and names (e.g., `sample-001.jpg`, `image_123.jpg`, random hashes). The tools might use the path information, so LLM knows the path or filename most of the time.
+**Mitigation**: Use neutral identifiers in file paths and names (e.g., `sample-001.jpg`, `image_123.jpg`, random hashes). The evaluation scripts strip path information, but custom datasets must be carefully prepared.
 
 ---
 
