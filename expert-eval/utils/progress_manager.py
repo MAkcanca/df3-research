@@ -20,7 +20,7 @@ class ProgressManager:
         
         Args:
             progress_dir: Directory for storing progress files.
-                         Defaults to 'webapp/progress/' in project root.
+                         Defaults to 'expert-eval/progress/' in project root.
         """
         if progress_dir is None:
             progress_dir = Path(__file__).parent.parent / "progress"

@@ -4,26 +4,28 @@ Expert Evaluation Web App for Forensic Analysis Results.
 A Streamlit application for experts to review and evaluate LLM reasoning
 in forensic image analysis tasks.
 
-Run with: streamlit run webapp/app.py
+Run with: streamlit run expert-eval/app.py
 """
 
 import sys
 from pathlib import Path
 
-# Add parent directory to path for imports
+# Add current directory to path for imports (since folder name has hyphen)
+sys.path.insert(0, str(Path(__file__).parent))
+# Add parent directory to path for other project imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import streamlit as st
 
-from webapp.utils.data_loader import (
+from utils.data_loader import (
     get_available_results_files,
     load_results,
     filter_results,
 )
-from webapp.utils.progress_manager import ProgressManager
-from webapp.components.sample_viewer import render_sample_viewer
-from webapp.components.evaluation_form import render_evaluation_form, render_evaluation_summary
-from webapp.components.sidebar import render_sidebar
+from utils.progress_manager import ProgressManager
+from components.sample_viewer import render_sample_viewer
+from components.evaluation_form import render_evaluation_form, render_evaluation_summary
+from components.sidebar import render_sidebar
 
 
 # Page configuration
