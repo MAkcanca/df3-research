@@ -46,3 +46,6 @@ tqdm>=4.67.0
 pytest>=8.0.0
 mkdocs
 mkdocs-document-dates
+
+# Expert evaluation webapp
+streamlit>=1.32.0
